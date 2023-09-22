@@ -8,7 +8,7 @@ function getTotal($arr) {
     $total = 0.00;
     //note: use the $arr variable, don't directly touch $a1-$a4
     //TODO do adding here
-    for ($i = 0; $i <= count($arr); $i++) {
+    for ($i = 0; $i < count($arr); $i++) {
         $total += $arr[$i];
     }
     //TODO do rounding stuff here (round to two decimals i.e., 0.10, 0.01, 0.00)
