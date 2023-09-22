@@ -13,9 +13,11 @@ function processArray($arr) {
             echo $key ."<br>";
         }
     }
-
+    //Problem 1 is completely done. 
+    //September 22, 2023
+    //Ivan Rivera (iar3)
 }
-//Problem 1 is completely done.
+
 echo "Problem 1: Odd Output<br>";
 ?>
 <table>
