@@ -10,7 +10,7 @@ function processArray($arr) {
     //TODO add logic here to echo out only odd values
     foreach ($arr as $key ) {
         if ( $key % 2 == 1) {
-            echo $key;
+            echo $key . ",";
         }
     }
 
