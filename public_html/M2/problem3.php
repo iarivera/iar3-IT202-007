@@ -12,11 +12,11 @@ function bePositive($arr) {
     //originally positive) and maintain the original datatype
     for ($i = 0; $i < count($arr); $i++) {
         if (is_numeric($i)) {
-            echo abs($arr[$i]) . var_dump($arr[$i]);
+            echo abs($arr[$i]) . var_dump($arr[$i]) . "<br>";
         }
         else if (is_string($i)) {
             if(strpos($i, "-") !== true) {
-                echo [strlen($arr[$i])] . var_dump($arr[$i]);
+                echo [strlen($arr[$i])] . var_dump($arr[$i]) . "<br>";
             }
         }
     }
