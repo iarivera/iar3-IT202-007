@@ -12,13 +12,14 @@ function bePositive($arr) {
     //originally positive) and maintain the original datatype
     for ($i = 0; $i < count($arr); $i++) {
         if (is_numeric($i)) {
-            echo abs($arr[$i]) . var_dump($arr);
+            echo abs($arr[$i]);
         }
         else if (is_string($i)) {
             if(strpos($i, "-") !== true) {
-                echo [strlen($arr[$i])] . var_dump($arr);
+                echo [strlen($arr[$i])];
             }
         }
+        var_dump($arr);
     }
     //hint: may want to use var_dump() or similar to show final data types
     //Problem 3 is completely done. 
