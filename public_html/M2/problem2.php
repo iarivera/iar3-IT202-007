@@ -13,6 +13,9 @@ function getTotal($arr) {
     }
     //TODO do rounding stuff here (round to two decimals i.e., 0.10, 0.01, 0.00)
     $total = number_format($total, 2, '.', '');
+    //Problem 2 is completely done. 
+    //September 22, 2023
+    //Ivan Rivera (iar3)
     echo "The total is " . var_export($total, true);
 }
 echo "Problem 2: Adding Floats<br>";

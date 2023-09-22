@@ -12,15 +12,18 @@ function bePositive($arr) {
     //originally positive) and maintain the original datatype
     for ($i = 0; $i < count($arr); $i++) {
         if (is_numeric($i)) {
-            echo abs($arr[$i]) . "<br>";
+            echo abs($arr[$i]) . " is a number <br>";
         }
         else if (is_string($i)) {
             if(strpos($i, "-") !== true) {
-                echo [strlen($arr[$i])] . "<br>";
+                echo [strlen($arr[$i])] . "is a string <br>";
             }
         }
     }
     //hint: may want to use var_dump() or similar to show final data types
+    //Problem 3 is completely done. 
+    //September 22, 2023
+    //Ivan Rivera (iar3)
 }
 echo "Problem 3: Be Positive<br>";
 ?>
