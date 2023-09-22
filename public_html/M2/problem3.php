@@ -16,7 +16,7 @@ function bePositive($arr) {
         }
         else if (is_string($i)) {
             if(strpos($i, "-") !== true) {
-                echo [strlen($i)-1] . "<br>";
+                echo [strlen($i -1 )] . "<br>";
             }
         }
     }
