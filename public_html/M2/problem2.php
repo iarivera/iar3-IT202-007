@@ -10,6 +10,7 @@ function getTotal($arr) {
     //TODO do adding here
     for ($i = 0; $i <= count($arr); $i++) {
         $total += $arr($i);
+        echo $total;
     }
     //TODO do rounding stuff here (round to two decimals i.e., 0.10, 0.01, 0.00)
     $total = number_format($total, 1, '.', '');

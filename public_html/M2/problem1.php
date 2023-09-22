@@ -15,6 +15,7 @@ function processArray($arr) {
     }
 
 }
+//Problem 1 is completely done.
 echo "Problem 1: Odd Output<br>";
 ?>
 <table>
