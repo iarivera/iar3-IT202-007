@@ -9,23 +9,25 @@
             console.log("loaded via javascript");
             //TODO: add any extra onload processing you may need here
         });
-        var h1Elem = document.querySelector('h1');
-        h1Elem.addEventListener("click", getCurrentSelection);
         function getCurrentSelection() {
             setTimeout(() => {
                 //added this delay here as some solutions may require it to update properly (i.e., click code may complete before the navigation changes)
                 //TODO: add code for processing the current selection
                 switch (placeholder) {
                     case login:
-                        h1Elem.innerHTML = 'Login'
+                        var h1Elem = document.getElementsByTagName('h1');
+                        h1Elem.innerHTML = 'Login';
                         break;
                     case register: 
+                        var h1Elem = document.getElementsByTagName('h1');
                         h1Elem.innerHTML = 'Register'
                         break;
                     case profile: 
+                        var h1Elem = document.getElementsByTagName('h1');
                         h1Elem.innerHTML = 'Profile'
                         break;
-                    case logout: 
+                    case logout:
+                        var h1Elem = document.getElementsByTagName('h1'); 
                         h1Elem.innerHTML = 'Logout'
                         break;
                 }
