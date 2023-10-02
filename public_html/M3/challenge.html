@@ -9,15 +9,13 @@
             console.log("loaded via javascript");
             //TODO: add any extra onload processing you may need here
         });
+        var h1Elem = document.getElementsByTagName('h1');
+        h1Elem.addEventListener("click", getCurrentSelection);
         function getCurrentSelection() {
             setTimeout(() => {
                 //added this delay here as some solutions may require it to update properly (i.e., click code may complete before the navigation changes)
                 //TODO: add code for processing the current selection
-                const h1Element = document.querySelector('h1');
-                onclick=updateCurrentPage('login');
-                onclick=updateCurrentPage('register');
-                onclick=updateCurrentPage('profile');
-                onclick=updateCurrentPage('logout');
+                
                 //Note: likely you'll want to call updateCurrentPage towards the end
                 
                 
@@ -32,7 +30,7 @@
         /*Make the links (or their surrounding area) change color on mouseover DONE*/
         /*Use CSS to uppercase the first character of the content in the <h1> tag and the <a> tags DONE*/
         nav {
-            a:hover { color:rgb(65, 194, 65)};
+            a:hover { color:rgb(31, 134, 31)};
             background-color: rgb(95, 198, 206);
             ul {
                 li {
