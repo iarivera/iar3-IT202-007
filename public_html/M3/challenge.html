@@ -9,6 +9,7 @@
             console.log("loaded via javascript");
             //TODO: add any extra onload processing you may need here
         });
+        document.getElementsByTagName("h1").onclick = getCurrentSelection;
         function getCurrentSelection() {
             setTimeout(() => {
                 //added this delay here as some solutions may require it to update properly (i.e., click code may complete before the navigation changes)
