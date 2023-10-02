@@ -12,9 +12,27 @@
         function getCurrentSelection() {
             setTimeout(() => {
                 //added this delay here as some solutions may require it to update properly (i.e., click code may complete before the navigation changes)
-                //TODO: add code for processing the current selection 
-
+                //TODO: add code for processing the current selection
+                var login = document.getElementById('login');
                 //Note: likely you'll want to call updateCurrentPage towards the end
+                if (login) {
+                    login.textContent = "Login";
+                }
+
+                var register = document.getElementById('register');
+                if (register) {
+                    login.textContent = "Register";
+                }
+
+                var profile = document.getElementById('profile');
+                if (profile) {
+                    login.textContent = "Profile";
+                }
+
+                var logout = document.getElementById('logout');
+                if (logout) {
+                    login.textContent = "Logout";
+                }
             }, 100);
         }
     </script>
