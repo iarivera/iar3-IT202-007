@@ -14,28 +14,8 @@
             setTimeout(() => {
                 //added this delay here as some solutions may require it to update properly (i.e., click code may complete before the navigation changes)
                 //TODO: add code for processing the current selection
-                switch (placeholder) {
-                    case login:
-                        var h1Elem = document.getElementsByTagName('h1');
-                        h1Elem.innerHTML = 'Login';
-                        break;
-                    case register: 
-                        var h1Elem = document.getElementsByTagName('h1');
-                        h1Elem.innerHTML = 'Register'
-                        break;
-                    case profile: 
-                        var h1Elem = document.getElementsByTagName('h1');
-                        h1Elem.innerHTML = 'Profile'
-                        break;
-                    case logout:
-                        var h1Elem = document.getElementsByTagName('h1'); 
-                        h1Elem.innerHTML = 'Logout'
-                        break;
-                }
+                
                 //Note: likely you'll want to call updateCurrentPage towards the end
-                h1Elem.innerHTML = updateCurrentPage(h1Elem);
-                
-                
             }, 100);
         }
     </script>
