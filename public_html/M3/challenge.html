@@ -15,6 +15,13 @@
                 //added this delay here as some solutions may require it to update properly (i.e., click code may complete before the navigation changes)
                 //TODO: add code for processing the current selection
                 var ele = document.getElementsByTagName("h1")[0];
+                var anchors = document.getElementsByTagName("a");
+                console.log("h1Label", ele);
+                ele.addEventListener("click", ()=>{
+                    if (anchors[0].addEventListener('click', handler, true)) {
+                        ele.innerHTML = "Login";
+                    }
+                })
                 //Note: likely you'll want to call updateCurrentPage towards the end
             }, 100);
         }
