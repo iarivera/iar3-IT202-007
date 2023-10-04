@@ -19,7 +19,7 @@
                 console.log("h1Label", ele);
                 ele.addEventListener("click", ()=>{
                     if (anchors[0].addEventListener('click', handler, true)) {
-                        ele.innerHTML = "Login";
+                        document.getElementsByTagName("h1")[0].innerHTML = "Login";
                     }
                 })
                 //Note: likely you'll want to call updateCurrentPage towards the end
