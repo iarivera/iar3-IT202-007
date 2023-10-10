@@ -33,34 +33,34 @@ require(__DIR__ . "/../../lib/functions.php");
     //TODO 3: Validation
     $hasError = false;
     if (empty($email)) {
-        echo "Email must not be empty";
+        echo "Email must not be empty\n";
         $hasError = true;
     }
     //sanitize
     $email = filter_var($email, FILTER_SANITIZE_EMAIL);
     //validate
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo "Invalid email address";
+        echo "Invalid email address\n";
         $hasError = true;
     }
     if (empty($password)) {
-        echo "Password must not be empty";
+        echo "Password must not be empty\n";
         $hasError = true;
     }
     if (empty($confirm)) {
-        echo "Confirm must not be empty";
+        echo "Confirm must not be empty\n";
         $hasError = true;
     }
     if (strlen($password) < 8) {
-        echo "Password too short";
+        echo "Password too short\n";
         $hasError = true;
     }
     if(strlen($password) > 0 && $password !== $confirm) {
-        echo "Passwords must match";
+        echo "Passwords must match\n";
         $hasError = true;
     }
     if (!$hasError) {
-        echo "Welcome, $email";
+        echo "Welcome, $email\n";
     }
 }
 ?>
