@@ -10,8 +10,8 @@ function bePositive($arr) {
     //note: use the $arr variable, don't directly touch $a1-$a4
     //TODO use echo to output all of the values as positive (even if they were 
     //originally positive) and maintain the original datatype
-    /*for ($i = 0; $i < count($arr); $i++) {
-        if (is_numeric($i)) {
+    for ($i = 0; $i < count($arr); $i++) {
+        if (is_numeric($arr[$i])) {
             echo abs($arr[$i]) . var_dump($arr[$i]) . "<br>";
         }
         else if (is_string($i)) {
@@ -19,8 +19,8 @@ function bePositive($arr) {
                 echo [strlen($arr[$i])] . var_dump($arr[$i]) . "<br>";
             }
         }
-    }*/
-
+    }
+    /*
     foreach ($arr as $i) {
         $is_string = false;
         if(is_string($i)) {
@@ -35,7 +35,7 @@ function bePositive($arr) {
         }
         var_dump($i);
         echo ",";
-    }
+    }*/
     //hint: may want to use var_dump() or similar to show final data types
     //Problem 3 is completely done. 
     //September 22, 2023
