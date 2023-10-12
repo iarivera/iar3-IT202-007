@@ -20,7 +20,7 @@ function bePositive($arr) {
             }
         }
     }
-    /*
+    /* Professor's solution
     foreach ($arr as $i) {
         $is_string = false;
         if(is_string($i)) {
