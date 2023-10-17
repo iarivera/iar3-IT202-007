@@ -19,7 +19,7 @@ function bePositive($arr) {
                 echo [strlen($arr[$i])] . var_dump($arr[$i]) . "<br>";
             }
         }
-    }
+    }    
     //hint: may want to use var_dump() or similar to show final data types
     //Problem 3 is completely done. 
     //September 22, 2023
