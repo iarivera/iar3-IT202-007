@@ -9,4 +9,6 @@ if(isset($_SESSION["user"]) && isset($_SESSION["user"]["email"])){
 else{
   echo "You're not logged in";
 }
+
+error_log("Session Data: " . var_export($_SESSION, true));
 ?>
