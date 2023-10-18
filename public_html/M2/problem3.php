@@ -19,7 +19,8 @@ function bePositive($arr) {
                 echo [strlen($arr[$i])] . var_dump($arr[$i]) . "<br>";
             }
         }
-    }
+    }    
+}
     /* Professor's solution
     foreach ($arr as $i) {
         $is_string = false;
@@ -36,6 +37,7 @@ function bePositive($arr) {
         var_dump($i);
         echo ",";
     }*/
+
     //hint: may want to use var_dump() or similar to show final data types
     //Problem 3 is completely done. 
     //September 22, 2023
