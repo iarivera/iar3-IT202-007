@@ -165,7 +165,7 @@
         }
         function clampToCanvas(paddle) {
             if (paddle.y < 0) {
-                paddle.y = canvas.height;
+                paddle.y = canvas.height - paddle.h;
             }
             if (paddle.y + paddle.h > canvas.height) {
                 paddle.y = 0;
