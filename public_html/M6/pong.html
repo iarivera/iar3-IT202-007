@@ -220,6 +220,19 @@
             context.textAlign = 'right';
             context.fillText('Score: ' + rightScore, canvas.width - offsetX, offsetY);
         }
+        // Show the end game screen
+        function endGame() {
+            erase();
+            context.fillStyle = '#000000';
+            context.font = '24px Arial';
+            context.textAlign = 'center';
+            var winner = 1;
+            if (rightScore === 10) winner = 2;
+            context.fillText('Player ' + winner + ' wins!', canvas.width / 2, canvas.height / 2);
+        }
+        function playAgain() {
+            canvas.removeEventListener('click',init);
+        }
         function erase() {
             context.fillStyle = '#FFFFFF';
             context.fillRect(0, 0, canvas.width, canvas.height);
