@@ -177,10 +177,10 @@
             ball.y += ball.sY;// move in y coordinate
             // Bounce the ball off the top/bottom
             if (ball.y < 0) {
-                ball.y = 0;
+                ball.y = canvas.height - ball.h;
             }
             if (ball.y + ball.h > canvas.height) {
-                ball.y = ball.height - ball.h;
+                ball.y = 0;
             }
         }
         function checkPaddleCollision() {
