@@ -226,7 +226,8 @@
             context.fillStyle = '#000000';
             context.font = '24px Arial';
             context.textAlign = 'center';
-            var winner = 1;
+            var winner = 0;
+            if (leftScore === 10) winner = 1;
             if (rightScore === 10) winner = 2;
             context.fillText('Player ' + winner + ' wins!', canvas.width / 2, canvas.height / 2);
         }
