@@ -21,7 +21,7 @@
         var S = 83;
         var UP = 38;
         var DOWN = 40;
-        var visibilityPercent = 0.6;
+        var visibilityPercent = 0.7;
 
         // Keep track of pressed keys
         var keys = {
@@ -165,6 +165,7 @@
         }
         function clampToCanvas(paddle) {
             // altered code so paddle appears on opposite side
+            // iar3 11/01/2023
             if (paddle.y < 0) {
                 paddle.y = canvas.height - paddle.h;
             }
@@ -177,6 +178,8 @@
             ball.x += ball.sX;//move in x coordinate
             ball.y += ball.sY;// move in y coordinate
             // Removed bouncing the ball off the top/bottom
+            // ball instead appears on opposite side
+            // // iar3 11/01/2023
             if (ball.y < 0) {
                 ball.y = canvas.height - ball.h;
             }
