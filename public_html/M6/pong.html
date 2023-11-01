@@ -164,6 +164,7 @@
             clampToCanvas(leftPaddle);
         }
         function clampToCanvas(paddle) {
+            // altered code so paddle appears on opposite side
             if (paddle.y < 0) {
                 paddle.y = canvas.height - paddle.h;
             }
@@ -175,7 +176,7 @@
             // Move the ball
             ball.x += ball.sX;//move in x coordinate
             ball.y += ball.sY;// move in y coordinate
-            // Bounce the ball off the top/bottom
+            // Removed bouncing the ball off the top/bottom
             if (ball.y < 0) {
                 ball.y = canvas.height - ball.h;
             }
@@ -223,25 +224,7 @@
             context.textAlign = 'right';
             context.fillText('Score: ' + rightScore, canvas.width - offsetX, offsetY);
         }
-        // Show the end game screen
-        function endGame() {
-            erase();
-            context.fillStyle = '#000000';
-            context.font = '24px Arial';
-            context.textAlign = 'center';
-            var winner = 0;
-            if (leftScore === 10) {
-                winner = 1;
-            }
-            else if (rightScore === 10) {
-                winner = 2;
-            }
-            context.fillText('Player ' + winner + ' wins!', canvas.width / 2, canvas.height / 2);
-            context.fillText('Play Again?')
-        }
-        function playAgain() {
-            canvas.removeEventListener('click',init);
-        }
+        
         function erase() {
             context.fillStyle = '#FFFFFF';
             context.fillRect(0, 0, canvas.width, canvas.height);
