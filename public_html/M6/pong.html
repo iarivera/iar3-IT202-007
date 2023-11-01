@@ -165,10 +165,10 @@
         }
         function clampToCanvas(paddle) {
             if (paddle.y < 0) {
-                paddle.y = 0;
+                paddle.y = canvas.height;
             }
             if (paddle.y + paddle.h > canvas.height) {
-                paddle.y = canvas.height - paddle.h;
+                paddle.y = 0;
             }
         }
         function moveBall() {
