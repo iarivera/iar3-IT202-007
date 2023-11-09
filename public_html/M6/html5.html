@@ -208,17 +208,11 @@
             //left side of ball passes left side of paddle
             if (ball.x < leftPaddle.x) {
                 rightScore++;
-                if (rightScore === 10) {
-                    endGame();
-                }
                 resetBall();
             }
             //right side of ball passes right side of paddle 
             else if (ball.x + ball.w > rightPaddle.x + rightPaddle.w) {
                 leftScore++;
-                if (leftScore === 10) {
-                    endGame();
-                }
                 resetBall();
             }
         }
@@ -241,6 +235,10 @@
             context.fillText('Score: ' + leftScore, offsetX, offsetY);
             context.textAlign = 'right';
             context.fillText('Score: ' + rightScore, canvas.width - offsetX, offsetY);
+
+            if (leftScore === 10 || rightScore) {
+                endGame();
+            }
         }
         
         function erase() {
