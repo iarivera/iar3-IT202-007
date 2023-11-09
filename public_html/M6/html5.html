@@ -236,9 +236,10 @@
             context.textAlign = 'right';
             context.fillText('Score: ' + rightScore, canvas.width - offsetX, offsetY);
 
-            if (leftScore === 10 || rightScore) {
+            if (leftScore === 10 || rightScore === 10) {
                 endGame();
             }
+
         }
         
         function erase() {
