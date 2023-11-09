@@ -208,13 +208,28 @@
             //left side of ball passes left side of paddle
             if (ball.x < leftPaddle.x) {
                 rightScore++;
+                if (rightScore === 10) {
+                    endGame();
+                }
                 resetBall();
             }
             //right side of ball passes right side of paddle 
             else if (ball.x + ball.w > rightPaddle.x + rightPaddle.w) {
                 leftScore++;
+                if (leftScore === 10) {
+                    endGame();
+                }
                 resetBall();
             }
+        }
+        function endGame() {
+            erase();
+            context.fillStyle = '#0000000';
+            context.font = '24px Arial';
+            context.textAlign = 'center';
+            var winner = 1;
+            if (rightScore === 10) winner =2;
+            context.fillText('Player ' + winner + ' wins!', canvas.width/2, canvas.height/2);
         }
         function drawScores() {
             // Draw the scores
