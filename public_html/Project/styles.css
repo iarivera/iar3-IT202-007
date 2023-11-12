@@ -1,5 +1,5 @@
 .alert-success {
-    background-color: green
+    background-color: #b1d244
 }
 
 .alert-warning {
@@ -7,17 +7,17 @@
 }
 
 .alert-danger {
-    background-color: red;
+    background-color: #E02435;
 }
 
 .alert-info {
-    background-color: teal;
+    background-color: #1CBCBC;
 }
-nav li{display: inline; background-color: rebeccapurple;}
-nav li a{color: hotpink}
+nav li{display: inline; background-color: rgb(255, 255, 255);}
+nav li a{color: #0099d3}
 input{border-radius: 50%;}
 body{
-    background-color: hotpink;
-    color: rgb(153, 0, 153);
+    background-color: #0099d3;
+    color: rgb(0, 0, 0);
 
 }
