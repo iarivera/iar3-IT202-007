@@ -73,6 +73,22 @@ function process_single_mon($mon, $columns, $mappings)
     $record["api_id"] = se($mon, "id", "", false);
     $record["type_1"] = $type[0];
     $record["type_2"] = $type[1];
+
+    foreach ($columns as $column) {
+        if(in_array($columns, ["id", "api_id"])){
+            continue;
+        }
+        if(array_key_exists($column, $mon)){
+            $record[$column] = $mon[$column];
+            if(empty($record[$column])){
+                if(str_contains($mappings[$column], "int")){
+                    $record[$column] = "0";
+                }
+            }
+        }
+    }
+    error_log("Record: " . var_export($record, true));
+    return $record;
 }
 ?>
 
