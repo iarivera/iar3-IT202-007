@@ -65,8 +65,8 @@ function insert_pokemon_into_db($db, $pokemon, $mappings)
 function process_single_mon($mon, $columns, $mappings)
 {
     // Process mon data
-    $type;
-    $type;
+    $type = isset($mon["type"]) ? se($mon["type"], "", " ", false) : " ";
+    $type = array_map('trim', explode(' ', $type));
 
     // Prepare record
     $record = [];
@@ -89,6 +89,11 @@ function process_single_mon($mon, $columns, $mappings)
     }
     error_log("Record: " . var_export($record, true));
     return $record;
+}
+
+function process_pokemon($result)
+{
+    
 }
 ?>
 
