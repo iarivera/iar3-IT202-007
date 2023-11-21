@@ -65,4 +65,26 @@ function insert_pokemon_into_db($db, $pokemon, $mappings)
 function process_single_mon($mon, $columns, $mappings)
 {
     // Process mon data
+    $type;
+    $type;
+
+    // Prepare record
+    $record = [];
+    $record["api_id"] = se($mon, "id", "", false);
+    $record["type_1"] = $type[0];
+    $record["type_2"] = $type[1];
 }
+?>
+
+<div class="container-fluid">
+    <h1>Cat Data Management</h1>
+    <div class="row">
+        <div class="col">
+            <!-- Breed refresh button -->
+            <form method="POST">
+                <input type="hidden" name="action" value="breeds" />
+                <input type="submit" class="btn btn-primary" value="Refresh Breeds" />
+            </form>
+        </div>
+    </div>
+</div>
