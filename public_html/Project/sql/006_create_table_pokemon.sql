@@ -1,4 +1,3 @@
-TEXT COMMENT 'Saving API Data into Database'
 CREATE TABLE CA_Pokemon(
     `id`    int auto_increment not null,
     `api_id` VARCHAR(10),
