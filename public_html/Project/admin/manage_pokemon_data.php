@@ -137,7 +137,7 @@ $action = se($_POST, "action", "", false);
 if ($action) {
     switch ($action) {
         case "pokemon":
-            $result = get("https://pokemon-go1.p.rapidapi.com/pokemon_names.json", "API_KEY", ["limit" => 100, "page" => 0], false);
+            $result = get("https://pokemon-go1.p.rapidapi.com/pokemon_names.json", "POKEMON_API_KEY", ["limit" => 100, "page" => 0], false);
             process_pokemon($result);
             break;
     }
