@@ -1,4 +1,3 @@
-//Intro to API
 <?php
 require_once(__DIR__ . "/load_api_keys.php");
 /**
