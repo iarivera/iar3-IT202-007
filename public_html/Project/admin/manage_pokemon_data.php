@@ -150,7 +150,7 @@ if ($action) {
         <div class="col">
             <!-- Breed refresh button -->
             <form method="POST">
-                <input type="hidden" name="action" value="Pokemon" />
+                <input type="hidden" name="action" value="pokemon" />
                 <input type="submit" class="btn btn-primary" value="Refresh Pokemon" />
             </form>
         </div>
