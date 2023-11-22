@@ -93,7 +93,44 @@ function process_single_mon($mon, $columns, $mappings)
 
 function process_pokemon($result)
 {
-    
+    $status = se($result, "status", 400, false);
+    if ($status != 200) {
+        return;
+    }
+
+    // Extract data from result
+    $data_string = html_entity_decode(se($result, "response", "{}", false));
+    $wrapper = "{\"data\":$data_string}";
+    $data = json_decode($wrapper, true);
+    if (!isset($data["data"])) {
+        return;
+    }
+    $data = $data["data"];
+    error_log("data: " . var_export($data, true));
+    //Get columns from CA_Pokemon table
+    $db = getDB();
+    $stmt = $db->prepare("SHOW COLUMNS FROM CA_Pokemon");
+    $stmt->execute();
+    $columnsData = $stmt->fetchALL(PDO::FETCH_ASSOC);
+
+    // Prepare clumns and mappings
+    $columns = array_column($columnsData, 'Field');
+    $mappings = [];
+    foreach ($columnsData as $column) {
+        $mappings[$column['Field']] = $column['Type'];
+    }
+    $ignored = ["id", "created", "modified"];
+    $columns = array_diff($columns, $ignored);
+
+    // Process each mon
+    $pokemon = [];
+    foreach ($data as $mon) {
+        $record = process_single_mon($mon, $columns, $mappings);
+        array_push($pokemon, $mon);
+    }
+
+    // Insert pokemon into database
+    insert_pokemon_into_db($db, $pokemon, $mappings);
 }
 ?>
 
