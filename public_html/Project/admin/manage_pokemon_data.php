@@ -132,16 +132,26 @@ function process_pokemon($result)
     // Insert pokemon into database
     insert_pokemon_into_db($db, $pokemon, $mappings);
 }
+
+$action = se($_POST, "action", "", false);
+if ($action) {
+    switch ($action) {
+        case "pokemon":
+            $result = get("https://pokemon-go1.p.rapidapi.com/pokemon_names.json", "API_KEY", ["limit" => 100, "page" => 0], false);
+            process_pokemon($result);
+            break;
+    }
+}
 ?>
 
 <div class="container-fluid">
-    <h1>Cat Data Management</h1>
+    <h1>Pokemon Data Management</h1>
     <div class="row">
         <div class="col">
             <!-- Breed refresh button -->
             <form method="POST">
-                <input type="hidden" name="action" value="breeds" />
-                <input type="submit" class="btn btn-primary" value="Refresh Breeds" />
+                <input type="hidden" name="action" value="Pokemon" />
+                <input type="submit" class="btn btn-primary" value="Refresh Pokemon" />
             </form>
         </div>
     </div>
