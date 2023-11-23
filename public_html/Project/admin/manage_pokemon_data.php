@@ -11,7 +11,7 @@ if (!has_role("Admin")) {
 function insert_pokemon_into_db($db, $pokemon, $mappings)
 {
     // Prepare SQL query
-    $query = "INSERT INTO `CA_Pokemon` ";
+    $query = "INSERT INTO `CA_Pokemon_Stats` ";
     if (count($pokemon) > 0) {
         $cols = array_keys($pokemon[0]);
         $query .= "(" . implode(",", array_map(function ($col) {
