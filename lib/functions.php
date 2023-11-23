@@ -18,6 +18,9 @@ require(__DIR__ . "/user_helpers.php");
 //TODO 4: Render function
 require(__DIR__ . "/render_functions.php");
 
+//TODO 5: API helper
+require(__DIR__ . "/api_helper.php");
+
 
 //duplicate email/username
 require(__DIR__ . "/duplicate_user_details.php");
