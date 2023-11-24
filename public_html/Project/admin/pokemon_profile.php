@@ -7,3 +7,52 @@ if (!has_role("Admin")) {
     //die(header("Location: " . get_url("home.php")));
     redirect("home.php");
 }
+
+$pokemon = [];
+
+$result = get_pokemon();
+// convert breed data to render_input's expected "options" data
+$pokemon = array_map(function ($v) {
+    return ["label" => $v["name"], "value" => $v["id"]];
+}, $result);
+
+$id = (int)se($_GET, "id", 0, false);
+$mons = []; //mons will refer specific pokemon
+if (count($_POST) > 0) {
+    $mons = $_POST;
+    $mons_id = -1;
+    if (validate_mons($_POST)) {
+        if ($id > 0) {
+            if (update_data("CA_Pokemon", $id, $_POST, ["id"])) {
+                $mons_id = $id;
+            }
+        } else {
+            $mons_id = save_data("CA_Pokemon", $_POST);
+        }
+    }
+    if ($mons_id > 0) {
+        flash("Successfully set profile for " . $mons["name"], "success");
+        redirect("admin/pokemon_profile.php?id=$mons_id");
+    }
+}
+
+if ($id > 0) {
+    $db = getDB();
+    // query happens here
+    $query = "";
+    $stmt = $db->prepare($query);
+    try {
+        $stmt->execute([":id" => $id]);
+        $result = $stmt->fetch();
+        if ($result) {
+            $mons = $result;
+            error_log("Pokemon result: " . var_export($mons, true));
+        } else {
+            flash("Error finding pokemon", "danger");
+        }
+    } catch (PDOException $e) {
+        error_log("Error fetching pokemon by id: " . var_export($e, true));
+        flash("An unhandled error occurred", "danger");
+    }
+}
+?>
