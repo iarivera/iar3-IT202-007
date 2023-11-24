@@ -69,12 +69,12 @@ function process_single_mon($mon, $columns, $mappings)
 
     // Map mon data to columns
     foreach ($columns as $column) {
-        if(in_array($columns, ["id", "api_id"])){
+        if(in_array($column, ["id", "api_id"])){
             continue;
         }
         error_log("$mon type: " . gettype($mon) . ", Content: " . var_export($mon, true));
         error_log("$column type: " . gettype($column) . ", Content: " . var_export($column, true));
-        if(array_key_exists($mon, $column)){
+        if(array_key_exists($column, $mon)){
             $record[$column] = $mon[$column];
             if(empty($record[$column])){
                 if(str_contains($mappings[$column], "int")){
