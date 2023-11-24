@@ -1,5 +1,4 @@
 <?php
-// Intro to API
 // note we need to go up 1 more directory
 require(__DIR__ . "/../../../partials/nav.php");
 
@@ -18,13 +17,13 @@ function insert_pokemon_into_db($db, $pokemon, $mappings)
             return "`$col`";
         }, $cols)) . ") VALUES ";
 
-        // Generate the VALUES clause for each mon
+        // Generate the VALUES clause for each pokemon
         $values = [];
         foreach ($pokemon as $i => $mon) { // I am using mon as the singular for pokemon
-            $pokemonPlaceholders = array_map(function ($v) use ($i) {
+            $monPlaceholders = array_map(function ($v) use ($i) {
                 return ":" . $v . $i; // Append the index to make each placeholdler unique
             }, $cols);
-            $values[] = "(" . implode(",", $pokemonPlaceholders) . ")";
+            $values[] = "(" . implode(",", $monPlaceholders) . ")";
         }
         
         $query .= implode(",", $values);
@@ -68,11 +67,14 @@ function process_single_mon($mon, $columns, $mappings)
     $record = [];
     $record["api_id"] = se($mon, "id", "", false);
 
+    // Map mon data to columns
     foreach ($columns as $column) {
         if(in_array($columns, ["id", "api_id"])){
             continue;
         }
-        if(array_key_exists($column, $mon)){
+        error_log("$mon type: " . gettype($mon) . ", Content: " . var_export($mon, true));
+        error_log("$column type: " . gettype($column) . ", Content: " . var_export($column, true));
+        if(array_key_exists($mon, $column)){
             $record[$column] = $mon[$column];
             if(empty($record[$column])){
                 if(str_contains($mappings[$column], "int")){
@@ -101,13 +103,13 @@ function process_pokemon($result)
     }
     $data = $data["data"];
     error_log("data: " . var_export($data, true));
-    //Get columns from CA_Pokemon table
+    //Get columns from CA_Pokemon_Stats table
     $db = getDB();
     $stmt = $db->prepare("SHOW COLUMNS FROM CA_Pokemon_Stats");
     $stmt->execute();
     $columnsData = $stmt->fetchALL(PDO::FETCH_ASSOC);
 
-    // Prepare clumns and mappings
+    // Prepare columns and mappings
     $columns = array_column($columnsData, 'Field');
     $mappings = [];
     foreach ($columnsData as $column) {
@@ -131,7 +133,7 @@ $action = se($_POST, "action", "", false);
 if ($action) {
     switch ($action) {
         case "pokemon":
-            $result = get("https://pokemon-go1.p.rapidapi.com/pokemon_names.json", "POKEMON_API_KEY", ["limit" => 75, "page" => 0], false);
+            $result = get("https://pokemon-go1.p.rapidapi.com/pokemon_names.json", "POKEMON_API_KEY", ["limit" => 75, "page" => 0], true, "pokemon-go1.p.rapidapi.com");
             process_pokemon($result);
             break;
     }
