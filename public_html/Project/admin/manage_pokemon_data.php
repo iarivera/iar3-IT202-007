@@ -20,9 +20,9 @@ function insert_pokemon_into_db($db, $pokemon, $mappings)
 
         // Generate the VALUES clause for each mon
         $values = [];
-        foreach ($pokemon as $i => $mon) { //I am using mon as the singular for pokemon
+        foreach ($pokemon as $i => $mon) { // I am using mon as the singular for pokemon
             $pokemonPlaceholders = array_map(function ($v) use ($i) {
-                return ":" . $v . $i;
+                return ":" . $v . $i; // Append the index to make each placeholdler unique
             }, $cols);
             $values[] = "(" . implode(",", $pokemonPlaceholders) . ")";
         }
@@ -44,7 +44,7 @@ function insert_pokemon_into_db($db, $pokemon, $mappings)
         foreach ($pokemon as $i => $mon) {
             foreach ($cols as $col) {
                 $placeholder = ":$col$i";
-                $val = isset($pokemon[$col]) ? $pokemon[$col] : "";
+                $val = isset($mon[$col]) ? $mon[$col] : "";
                 $param = PDO::PARAM_STR;
                 if (str_contains($mappings[$col], "int")) {
                     $param = PDO::PARAM_INT;
@@ -64,15 +64,9 @@ function insert_pokemon_into_db($db, $pokemon, $mappings)
 
 function process_single_mon($mon, $columns, $mappings)
 {
-    // Process mon data
-    $type = isset($mon["type"]) ? se($mon["type"], "", " ", false) : " ";
-    $type = array_map('trim', explode(' ', $type));
-
     // Prepare record
     $record = [];
     $record["api_id"] = se($mon, "id", "", false);
-    $record["type_1"] = $type[0];
-    $record["type_2"] = $type[1];
 
     foreach ($columns as $column) {
         if(in_array($columns, ["id", "api_id"])){
@@ -109,7 +103,7 @@ function process_pokemon($result)
     error_log("data: " . var_export($data, true));
     //Get columns from CA_Pokemon table
     $db = getDB();
-    $stmt = $db->prepare("SHOW COLUMNS FROM CA_Pokemon");
+    $stmt = $db->prepare("SHOW COLUMNS FROM CA_Pokemon_Stats");
     $stmt->execute();
     $columnsData = $stmt->fetchALL(PDO::FETCH_ASSOC);
 
@@ -126,7 +120,7 @@ function process_pokemon($result)
     $pokemon = [];
     foreach ($data as $mon) {
         $record = process_single_mon($mon, $columns, $mappings);
-        array_push($pokemon, $mon);
+        array_push($pokemon, $record);
     }
 
     // Insert pokemon into database
@@ -137,7 +131,7 @@ $action = se($_POST, "action", "", false);
 if ($action) {
     switch ($action) {
         case "pokemon":
-            $result = get("https://pokemon-go1.p.rapidapi.com/pokemon_names.json", "POKEMON_API_KEY", ["limit" => 100, "page" => 0], false);
+            $result = get("https://pokemon-go1.p.rapidapi.com/pokemon_names.json", "POKEMON_API_KEY", ["limit" => 75, "page" => 0], false);
             process_pokemon($result);
             break;
     }
@@ -148,7 +142,7 @@ if ($action) {
     <h1>Pokemon Data Management</h1>
     <div class="row">
         <div class="col">
-            <!-- Breed refresh button -->
+            <!-- Pokemon refresh button -->
             <form method="POST">
                 <input type="hidden" name="action" value="pokemon" />
                 <input type="submit" class="btn btn-primary" value="Refresh Pokemon" />
