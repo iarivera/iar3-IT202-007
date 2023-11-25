@@ -99,3 +99,19 @@ function search_mons()
 
     return $mons;
 }
+/**
+ * Dynamically binds parameters based on value data type
+ */
+function bind_params($stmt, $params)
+{
+    // Bind parameters to the SQL statement
+    foreach ($params as $k => $v) {
+        $type = PDO::PARAM_STR;
+        if (is_null($v)) {
+            $type = PDO::PARAM_NULL;
+        } else if (is_numeric($v)) {
+            $type = PDO::PARAM_INT;
+        }
+        $stmt->bindValue($k, $v, $type);
+    }
+}
