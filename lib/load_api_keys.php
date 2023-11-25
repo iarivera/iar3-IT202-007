@@ -1,6 +1,5 @@
-//Intro to API
 <?php
-$env_keys = ["API_KEY"]; //This is where my API_KEY should be
+$env_keys = ["POKEMON_API_KEY"]; //This is where my API key should be
 $ini = @parse_ini_file(".env");
 
 $API_KEYS = [];

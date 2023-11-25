@@ -1,5 +1,4 @@
 <?php
-// Intro to API
 // note we need to go up 1 more directory
 require(__DIR__ . "/../../../partials/nav.php");
 
@@ -7,7 +6,7 @@ if (!has_role("Admin")) {
     flash("You don't have permission to view this page", "warning");
     die(header("Location: " . get_url("home.php")));
 }
-//TODO need to update insert_breeds... to use the $mappings array and not go based on is_int for value
+//TODO need to update insert_pokemon... to use the $mappings array and not go based on is_int for value
 function insert_pokemon_into_db($db, $pokemon, $mappings)
 {
     // Prepare SQL query
@@ -18,13 +17,13 @@ function insert_pokemon_into_db($db, $pokemon, $mappings)
             return "`$col`";
         }, $cols)) . ") VALUES ";
 
-        // Generate the VALUES clause for each mon
+        // Generate the VALUES clause for each pokemon
         $values = [];
-        foreach ($pokemon as $i => $mon) { //I am using mon as the singular for pokemon
-            $pokemonPlaceholders = array_map(function ($v) use ($i) {
-                return ":" . $v . $i;
+        foreach ($pokemon as $i => $mon) { // I am using mon as the singular for pokemon
+            $monPlaceholders = array_map(function ($v) use ($i) {
+                return ":" . $v . $i; // Append the index to make each placeholdler unique
             }, $cols);
-            $values[] = "(" . implode(",", $pokemonPlaceholders) . ")";
+            $values[] = "(" . implode(",", $monPlaceholders) . ")";
         }
         
         $query .= implode(",", $values);
@@ -44,7 +43,7 @@ function insert_pokemon_into_db($db, $pokemon, $mappings)
         foreach ($pokemon as $i => $mon) {
             foreach ($cols as $col) {
                 $placeholder = ":$col$i";
-                $val = isset($pokemon[$col]) ? $pokemon[$col] : "";
+                $val = isset($mon[$col]) ? $mon[$col] : "";
                 $param = PDO::PARAM_STR;
                 if (str_contains($mappings[$col], "int")) {
                     $param = PDO::PARAM_INT;
@@ -64,20 +63,17 @@ function insert_pokemon_into_db($db, $pokemon, $mappings)
 
 function process_single_mon($mon, $columns, $mappings)
 {
-    // Process mon data
-    $type = isset($mon["type"]) ? se($mon["type"], "", " ", false) : " ";
-    $type = array_map('trim', explode(' ', $type));
-
     // Prepare record
     $record = [];
     $record["api_id"] = se($mon, "id", "", false);
-    $record["type_1"] = $type[0];
-    $record["type_2"] = $type[1];
 
+    // Map mon data to columns
     foreach ($columns as $column) {
-        if(in_array($columns, ["id", "api_id"])){
+        if(in_array($column, ["id", "api_id"])){
             continue;
         }
+        error_log("$mon type: " . gettype($mon) . ", Content: " . var_export($mon, true));
+        error_log("$column type: " . gettype($column) . ", Content: " . var_export($column, true));
         if(array_key_exists($column, $mon)){
             $record[$column] = $mon[$column];
             if(empty($record[$column])){
@@ -107,13 +103,13 @@ function process_pokemon($result)
     }
     $data = $data["data"];
     error_log("data: " . var_export($data, true));
-    //Get columns from CA_Pokemon table
+    //Get columns from CA_Pokemon_Stats table
     $db = getDB();
     $stmt = $db->prepare("SHOW COLUMNS FROM CA_Pokemon");
     $stmt->execute();
     $columnsData = $stmt->fetchALL(PDO::FETCH_ASSOC);
 
-    // Prepare clumns and mappings
+    // Prepare columns and mappings
     $columns = array_column($columnsData, 'Field');
     $mappings = [];
     foreach ($columnsData as $column) {
@@ -126,7 +122,7 @@ function process_pokemon($result)
     $pokemon = [];
     foreach ($data as $mon) {
         $record = process_single_mon($mon, $columns, $mappings);
-        array_push($pokemon, $mon);
+        array_push($pokemon, $record);
     }
 
     // Insert pokemon into database
@@ -137,7 +133,7 @@ $action = se($_POST, "action", "", false);
 if ($action) {
     switch ($action) {
         case "pokemon":
-            $result = get("https://pokemon-go1.p.rapidapi.com/pokemon_names.json", "API_KEY", ["limit" => 100, "page" => 0], false);
+            $result = get("https://pokemon-go1.p.rapidapi.com/pokemon_names.json", "POKEMON_API_KEY", ["limit" => 75, "page" => 0], true, "pokemon-go1.p.rapidapi.com");
             process_pokemon($result);
             break;
     }
@@ -148,7 +144,7 @@ if ($action) {
     <h1>Pokemon Data Management</h1>
     <div class="row">
         <div class="col">
-            <!-- Breed refresh button -->
+            <!-- Pokemon refresh button -->
             <form method="POST">
                 <input type="hidden" name="action" value="pokemon" />
                 <input type="submit" class="btn btn-primary" value="Refresh Pokemon" />
