@@ -56,3 +56,18 @@ if ($id > 0) {
     }
 }
 ?>
+<div class="container-fluid>">
+    <h1>Pokemon Profile</h1>
+    <form method="POST">
+        <?php render_input([]) ?>
+    </form>
+</div>
+<style>
+    .selected {
+        border: 3px solid black;
+    }
+</style>
+<?php
+//note we need to go up 1 more directory
+require_once(__DIR__ . "/../../../partials/flash.php");
+?>
