@@ -29,7 +29,7 @@ require(__DIR__ . "/update_data.php");
 require(__DIR__ . "/redirect.php");
 
 //TODO 9: Pokemon Helper Functions
-require(__DIR__ . "pokemon_helpers.php");
+require(__DIR__ . "/pokemon_helpers.php");
 
 //duplicate email/username
 require(__DIR__ . "/duplicate_user_details.php");
