@@ -6,7 +6,7 @@ if (!has_role("Admin")) {
     flash("You don't have permission to view this page", "warning");
     die(header("Location: " . get_url("home.php")));
 }
-//TODO need to update insert_breeds... to use the $mappings array and not go based on is_int for value
+//TODO need to update insert_pokemon... to use the $mappings array and not go based on is_int for value
 function insert_pokemon_into_db($db, $pokemon, $mappings)
 {
     // Prepare SQL query

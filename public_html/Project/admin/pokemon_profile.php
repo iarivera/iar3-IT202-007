@@ -59,7 +59,8 @@ if ($id > 0) {
 <div class="container-fluid>">
     <h1>Pokemon Profile</h1>
     <form method="POST">
-        <?php render_input([]) ?>
+        <?php render_input(["type" => "text", "id" => "name", "name" => "name", "label" => "Name", "rules" => ["minlength" => 2, "required" => true], "value" => se($mons, "name", "", false)]) ?>
+        <?php render_button(["text" => "Save", "type" => "submit"]); ?>
     </form>
 </div>
 <style>
