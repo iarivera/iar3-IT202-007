@@ -65,3 +65,37 @@ function validate_mons($mons) {
 
     return !$has_error;
 }
+
+function search_mons()
+{
+    // Initialize variables
+    global $search; //make search available outside of this function
+    $search = $_GET;
+    $mons = [];
+    $params = [];
+
+    // Build the SQL query
+    $query = _build_search_query($params, $search);
+
+    // Prepare the SQL statement
+    $db = getDB();
+    $stmt = $db->prepare($query);
+
+    // Bind parameters to the SQL statement
+    bind_params($stmt, $params);
+    error_log("search query: " . var_export($query, true));
+    error_log("params: " . var_export($params, true));
+    // Execute the SQL statement and fetch results
+    try {
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        if ($result) {
+            $cats = $result;
+        }
+    } catch (PDOException $e) {
+        flash("An error occurred while searching for Pokemon: " . $e->getMessage(), "warning");
+        error_log("Pokemon Search Error: " . var_export($e, true));
+    }
+
+    return $mons;
+}
