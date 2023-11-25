@@ -10,7 +10,7 @@ if (!has_role("Admin")) {
 function insert_pokemon_into_db($db, $pokemon, $mappings)
 {
     // Prepare SQL query
-    $query = "INSERT INTO `CA_Pokemon_Stats` ";
+    $query = "INSERT INTO `CA_Pokemon` ";
     if (count($pokemon) > 0) {
         $cols = array_keys($pokemon[0]);
         $query .= "(" . implode(",", array_map(function ($col) {
@@ -105,7 +105,7 @@ function process_pokemon($result)
     error_log("data: " . var_export($data, true));
     //Get columns from CA_Pokemon_Stats table
     $db = getDB();
-    $stmt = $db->prepare("SHOW COLUMNS FROM CA_Pokemon_Stats");
+    $stmt = $db->prepare("SHOW COLUMNS FROM CA_Pokemon");
     $stmt->execute();
     $columnsData = $stmt->fetchALL(PDO::FETCH_ASSOC);
 
