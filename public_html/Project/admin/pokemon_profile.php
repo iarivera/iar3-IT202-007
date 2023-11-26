@@ -9,7 +9,10 @@ if (!has_role("Admin")) {
 }
 
 $pokemon = [];
-
+$statuses = ["Caught", "Not Caught"];
+$statuses = array_map(function ($v) {
+    return ["label" => $v, "value" => strtolower($v)];
+}, $statuses);
 $result = get_pokemon();
 // convert breed data to render_input's expected "options" data
 $pokemon = array_map(function ($v) {

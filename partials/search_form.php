@@ -18,13 +18,6 @@ $pokemon = array_map(function ($v) {
 }, $result);
 array_unshift($pokemon, ["label" => "Any", "value" => ""]);
 
-// make types
-$types = get_pokemonTypes(); // make this function
-$types = array_map(function ($v) {
-    return ["label" => $v["name"], "value" => $v["id"]];
-}, $temps);
-array_unshift($temps, ["label" => "Any", "value" => ""]);
-
 // make columns options for order by map order columns
 $cols = array_map(function ($v) {
     return ["label" => $v, "value" => strtolower($v)];
@@ -45,24 +38,6 @@ array_unshift($orders, ["label" => "Any", "value" => ""]);
         </div>
         <div class="col-auto">
             <?php render_input(["type" => "select", "id" => "status", "name" => "status", "label" => "Status", "options" => $statuses, "value" => se($search, "status", "", false)]); ?>
-        </div>
-        <div class="col-auto">
-            <?php render_input(["type" => "select", "id" => "breed", "name" => "breed_id", "label" => "Breed", "options" => $breeds, "value" => se($search, "breed_id", "", false)]); ?>
-        </div>
-        <div class="col-auto">
-            <?php render_input(["type" => "select", "id" => "temperament", "name" => "temperament[]", "label" => "Temperament", "options" => $temps, "rules" => ["multiple" => true], "value" => isset($search["temperament"]) ? $search["temperament"] : []]); ?>
-        </div>
-        <div class="col-auto">
-            <?php render_input(["type" => "select", "id" => "sex", "name" => "sex", "label" => "Sex", "options" => $sex, "value" => se($search, "sex", "", false)]); ?>
-        </div>
-        <div class="col-auto">
-            <?php render_input(["type" => "select", "id" => "fixed", "name" => "fixed", "label" => "Fixed (spayed/neutered)", "options" => $fixed, "value" => se($search, "fixed", "", false)]); ?>
-        </div>
-        <div class="col-2">
-            <?php render_input(["type" => "number", "id" => "age_min", "name" => "age_min", "label" => "Age (min)", "value" => se($search, "age_min", "", false)]); ?>
-        </div>
-        <div class="col-2">
-            <?php render_input(["type" => "number", "id" => "age_max", "name" => "age_max", "label" => "Age (max)", "value" => se($search, "age_max", "", false)]); ?>
         </div>
         <div class="col-2">
             <?php render_input(["type" => "select", "id" => "column", "name" => "column", "label" => "Columns", "options" => $cols, "value" => se($search, "column", "", false)]); ?>

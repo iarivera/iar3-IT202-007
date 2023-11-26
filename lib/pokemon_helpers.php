@@ -99,6 +99,55 @@ function search_mons()
 
     return $mons;
 }
+
+// Note: & tells php to pass by reference so any changes made to $params are reflected outside of the function
+function _build_search_query(&$params, $search)
+{
+    $query = "SELECT
+            c.id,
+            c.name,
+            WHERE 1=1";
+    foreach ($search as $key => $value) {
+        if ($value == 0 || !empty($value)) {
+            switch ($key) {
+                case 'name':
+                    $params[":name"] = "%$value%";
+                    $query .= " AND c.name like :name";
+                case 'id':
+                    $params[":id"] = $value;
+                    $query .= " AND c.id = :id";
+                    break;
+            }
+        }
+    }
+
+    if (!has_role("Admin")) {
+        $query .= " AND status != 'unavailable'";
+    }
+    // order by
+    if (isset($search["column"]) && !empty($search["column"]) && isset($search["order"]) && !empty($search["order"])) {
+        global $VALID_ORDER_COLUMNS;
+        $col = $search["column"];
+        $order = $search["order"];
+        // prevent SQL injection by checking it against a hard coded list
+        if (!in_array($col, $VALID_ORDER_COLUMNS)) {
+            $col = "name";
+        }
+        if (!in_array($order, ["asc", "desc"])) {
+            $order = "asc";
+        }
+        // special mapping to use table name prefix to resolve ambiguity error
+        if (in_array($col, ["created", "modified"])) {
+            $col = "c.$col";
+        }
+        $query .= " ORDER BY $col $order"; //<-- be absolutely sure you trust these values; we can't bind certain parts of the query due to how the parameter mapping works
+    }
+    // limit last
+    $query .= " LIMIT 10";
+
+
+    return $query;
+}
 /**
  * Dynamically binds parameters based on value data type
  */
