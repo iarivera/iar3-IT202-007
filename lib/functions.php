@@ -15,6 +15,21 @@ require(__DIR__ . "/sanitizers.php");
 //TODO 3: User helpers
 require(__DIR__ . "/user_helpers.php");
 
+//TODO 5: Render function
+require(__DIR__ . "/render_functions.php");
+
+//TODO 6: API helper
+require(__DIR__ . "/api_helper.php");
+
+//TODO 7: Saving/Updating Data
+require(__DIR__ . "/save_data.php");
+require(__DIR__ . "/update_data.php");
+
+//TODO 8: Redirect
+require(__DIR__ . "/redirect.php");
+
+//TODO 9: Pokemon Helper Functions
+require(__DIR__ . "/pokemon_helpers.php");
 
 //duplicate email/username
 require(__DIR__ . "/duplicate_user_details.php");
