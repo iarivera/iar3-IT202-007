@@ -36,6 +36,7 @@ session_start();
         <?php if (is_logged_in()) : ?>
             <li><a href="<?php echo get_url('home.php'); ?>">Home</a></li>
             <li><a href="<?php echo get_url('profile.php'); ?>">Profile</a></li>
+            <li><a href="<?php echo get_url('pokemon_profile.php'); ?>">Pokemon Profiles</a></li>
         <?php endif; ?>
         <?php if (!is_logged_in()) : ?>
             <li><a href="<?php echo get_url('login.php'); ?>">Login</a></li>
@@ -46,6 +47,8 @@ session_start();
             <li><a href="<?php echo get_url('admin/list_roles.php'); ?>">List Roles</a></li>
             <li><a href="<?php echo get_url('admin/assign_roles.php'); ?>">Assign Roles</a></li>
             <li><a href="<?php echo get_url('admin/manage_pokemon_data.php'); ?>">Manage Pokemon</a></li>
+            <li><a href="<?php echo get_url('admin/list_pokemon.php'); ?>">List Pokemon</a></li>
+            <li><a href="<?php echo get_url('admin/pokemon_profile.php'); ?>">Pokemon Profiles</a></li>
         <?php endif; ?>
         <?php if (is_logged_in()) : ?>
             <li><a href="<?php echo get_url('logout.php'); ?>">Logout</a></li>

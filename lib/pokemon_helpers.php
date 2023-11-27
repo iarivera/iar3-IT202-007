@@ -105,7 +105,6 @@ function search_mons()
 function _build_search_query(&$params, $search)
 {
     $query = "SELECT
-            c.id,
             c.name,
             WHERE 1=1";
     foreach ($search as $key => $value) {
