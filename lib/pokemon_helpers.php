@@ -67,6 +67,25 @@ function validate_mons($mons) {
     return !$has_error;
 }
 
+function get_pokemon_by_id($id)
+{
+    error_log("Checking for Pokemon: " . var_export($id, true));
+    $db = getDB();
+    // In this case I do want all the data
+    $query = "SELECT * FROM CA_Pokemon WHERE id = :id";
+    $stmt = $db->prepare($query);
+    $stmt->bindValue(":id", $id);
+    try {
+        $stmt->execute();
+        $result = $stmt->fetch();
+        //error_log("Breed results: " . var_export($result, true));
+        return $result;
+    } catch (PDOException $e) {
+        error_log("Error fetching Pokemon from db: " . var_export($e, true));
+    }
+    return [];
+}
+
 function search_mons()
 {
     // Initialize variables
@@ -91,7 +110,7 @@ function search_mons()
         $stmt->execute();
         $result = $stmt->fetchAll();
         if ($result) {
-            $cats = $result;
+            $mons = $result;
         }
     } catch (PDOException $e) {
         flash("An error occurred while searching for Pokemon: " . $e->getMessage(), "warning");
@@ -102,6 +121,7 @@ function search_mons()
 }
 
 // Note: & tells php to pass by reference so any changes made to $params are reflected outside of the function
+// Need to fix
 function _build_search_query(&$params, $search)
 {
     $query = "SELECT
@@ -113,6 +133,7 @@ function _build_search_query(&$params, $search)
                 case 'name':
                     $params[":name"] = "%$value%";
                     $query .= " AND c.name like :name";
+                    break;
                 case 'id':
                     $params[":id"] = $value;
                     $query .= " AND c.id = :id";
