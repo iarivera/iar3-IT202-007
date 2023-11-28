@@ -1,5 +1,7 @@
 <?php
 // note we need to go up 1 more directory
+// iar3 11/27/2023 This file pulls data
+// from the API and inserts it into the db
 require(__DIR__ . "/../../../partials/nav.php");
 
 if (!has_role("Admin")) {
