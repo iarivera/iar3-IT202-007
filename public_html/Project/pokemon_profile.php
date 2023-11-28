@@ -50,18 +50,10 @@ if ($pokemon_id != 0) {
             <div class="row">
                 <div class="col">
                     <h5>Info</h5>
-                    <div><strong>Breed: </strong><?php se($cat, "breed"); ?></div>
+                    <div><strong>Type 1: </strong><?php se($mons, "type_1"); ?></div>
+                    <div><strong>Type 2: </strong><?php se($mons, "type_2"); ?></div>
                 </div>
                 <div class="col">
-                    <div><strong>Indoor: </strong><?php render_like(["value" => se($breed, "indoor", 0, false)]); ?></div>
-                    <div><strong>Lap: </strong><?php render_like(["value" => se($breed, "lap", 0, false)]); ?></div>
-                    <div><strong>Hairless: </strong><?php render_like(["value" => se($breed, "hairless", 0, false)]); ?></div>
-                    <div><strong>Natural: </strong><?php render_like(["value" => se($breed, "natural", 0, false)]); ?></div>
-                    <div><strong>Rare: </strong><?php render_like(["value" => se($breed, "rare", 0, false)]); ?></div>
-                    <div><strong>Rex: </strong><?php render_like(["value" => se($breed, "rex", 0, false)]); ?></div>
-                    <div><strong>Suppressed Tail: </strong><?php render_like(["value" => se($breed, "suppressed_tail", 0, false)]); ?></div>
-                    <div><strong>Short Legs: </strong><?php render_like(["value" => se($breed, "short_legs", 0, false)]); ?></div>
-                    <div><strong>Hypoallergenic: </strong><?php render_like(["value" => se($breed, "hypoallergenic", 0, false)]); ?></div>
                 </div>
             </div>
         </div>
