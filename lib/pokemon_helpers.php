@@ -35,34 +35,6 @@ function validate_mons($mons) {
         flash("Pokemon needs a typing", "warning");
         $has_error = false;
     }
-    // Stats: Attack, Defense, Stamina
-    $attack = (int)se($mons, "attack", -1, false);
-    if($attack == -1){
-        flash("Attack must be entered", "warning");
-        $has_error = true;
-    }
-    else if($attack < 0){
-        flash("Attack must be a positive value", "warning");
-        $has_error = true;
-    }
-    $defense = (int)se($mons, "defense", -1, false);
-    if($defense == -1){
-        flash("Defense must be entered", "warning");
-        $has_error = true;
-    }
-    else if($defense < 0){
-        flash("Defense must be a positive value", "warning");
-        $has_error = true;
-    }
-    $stamina = (int)se($mons, "stamina", -1, false);
-    if($stamina == -1){
-        flash("Stamina must be entered", "warning");
-        $has_error = true;
-    }
-    else if($stamina < 0){
-        flash("Weight must be a positive value", "warning");
-        $has_error = true;
-    }
 
     return !$has_error;
 }
