@@ -3,7 +3,7 @@ $VALID_ORDER_COLUMNS = ["name", "created", "modified"];
 
 function get_pokemon() {
     $db = getDB();
-    $query = "SELECT id, api_id, name FROM CA_Pokemon_Stats";
+    $query = "SELECT id, name FROM CA_Pokemon";
     $stmt = $db->prepare($query);
     try {
         $stmt->execute();
@@ -11,7 +11,7 @@ function get_pokemon() {
         //error_log("Breed results: " . var_export($result, true));
         return $result;
     } catch (PDOException $e) {
-        error_log("Error fetching breeds from db: " . var_export($e, true));
+        error_log("Error fetching Pokemon from db: " . var_export($e, true));
     }
     return [];
 }
