@@ -63,9 +63,15 @@ function insert_pokemon_into_db($db, $pokemon, $mappings)
 
 function process_single_mon($mon, $columns, $mappings)
 {
+    // Process Pokemon Type
+    $type = $mon["type"];    
     // Prepare record
     $record = [];
-    $record["api_id"] = se($mon, "id", "", false);
+    $record["api_id"] = se($mon, "pokemon_id", "", false);
+    $record["name"] = se($mon, "pokemon_name", "", false);
+    $record["type_1"] = $type[0];
+    $record["type_2"] = $type[1];
+    
 
     // Map mon data to columns
     foreach ($columns as $column) {
@@ -103,7 +109,7 @@ function process_pokemon($result)
     }
     $data = $data["data"];
     error_log("data: " . var_export($data, true));
-    //Get columns from CA_Pokemon_Stats table
+    //Get columns from CA_Pokemon table
     $db = getDB();
     $stmt = $db->prepare("SHOW COLUMNS FROM CA_Pokemon");
     $stmt->execute();
@@ -133,7 +139,7 @@ $action = se($_POST, "action", "", false);
 if ($action) {
     switch ($action) {
         case "pokemon":
-            $result = get("https://pokemon-go1.p.rapidapi.com/pokemon_names.json", "POKEMON_API_KEY", ["limit" => 75, "page" => 0], true, "pokemon-go1.p.rapidapi.com");
+            $result = get("https://pokemon-go1.p.rapidapi.com/pokemon_types.json", "POKEMON_API_KEY", ["limit" => 75, "page" => 0], true, "pokemon-go1.p.rapidapi.com");
             process_pokemon($result);
             break;
     }

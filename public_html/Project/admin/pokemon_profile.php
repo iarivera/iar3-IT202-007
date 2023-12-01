@@ -63,6 +63,8 @@ if ($id > 0) {
     <h1>Pokemon Profile</h1>
     <form method="POST">
         <?php render_input(["type" => "text", "id" => "name", "name" => "name", "label" => "Name", "rules" => ["minlength" => 2, "required" => true], "value" => se($mons, "name", "", false)]) ?>
+        <?php render_input(["type" => "select", "id" => "type_1", "name" => "type_1", "label" => "Type", "rules" => ["required" => true], "value" => se($mons, "type_1", "Unknown", false)]); ?>
+        <?php render_input(["type" => "select", "id" => "type_2", "name" => "type_2", "label" => " 2nd Type", "rules" => ["required" => false], "value" => se($mons, "type_1", "Unknown", false)]); ?> 
         <?php render_button(["text" => "Save", "type" => "submit"]); ?>
     </form>
 </div>
