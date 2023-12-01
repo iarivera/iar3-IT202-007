@@ -8,10 +8,23 @@ function get_pokemon() {
     try {
         $stmt->execute();
         $result = $stmt->fetchAll();
-        //error_log("Breed results: " . var_export($result, true));
         return $result;
     } catch (PDOException $e) {
         error_log("Error fetching Pokemon from db: " . var_export($e, true));
+    }
+    return [];
+}
+
+function get_pokemon_by_type() {
+    $db = getDB();
+    $query = "SELECT type_1 from CA_Pokemon";
+    $stmt = $db->prepare($query);
+    try {
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        return $result;
+    } catch (PDOException $e) {
+        error_log("Error searching Pokemon by type: " . var_export($e, true));
     }
     return [];
 }
