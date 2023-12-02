@@ -1,5 +1,6 @@
 <?php
-//note we need to go up 1 more directory
+//iar3 12/02/2001 This code looks for Pokemon, and sets
+//some variables for data creation.
 require(__DIR__ . "/../../../partials/nav.php");
 
 if (!has_role("Admin")) {
@@ -9,7 +10,7 @@ if (!has_role("Admin")) {
 }
 
 $pokemon = [];
-$pokemonTypes = ["", "Normal", "Fire", "Water", "Electric", "Grass", "Ice", "Fighting", "Poison", "Ground", "Flying", "Psychic", "Bug", "Rock", "Ghost", "Dark", "Steel", "Dragon", "Fairy"];
+$pokemonTypes = ["None", "Normal", "Fire", "Water", "Electric", "Grass", "Ice", "Fighting", "Poison", "Ground", "Flying", "Psychic", "Bug", "Rock", "Ghost", "Dark", "Steel", "Dragon", "Fairy"];
 $statuses = ["Caught", "Not Caught"];
 $statuses = array_map(function ($v) {
     return ["label" => $v, "value" => strtolower($v)];
