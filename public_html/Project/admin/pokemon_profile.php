@@ -9,7 +9,7 @@ if (!has_role("Admin")) {
 }
 
 $pokemon = [];
-$pokemonTypes = ["Normal", "Fire", "Water", "Electric", "Grass", "Ice", "Fighting", "Poison", "Ground", "Flying", "Psychic", "Bug", "Rock", "Ghost", "Dark", "Steel", "Dragon", "Fairy"];
+$pokemonTypes = ["", "Normal", "Fire", "Water", "Electric", "Grass", "Ice", "Fighting", "Poison", "Ground", "Flying", "Psychic", "Bug", "Rock", "Ghost", "Dark", "Steel", "Dragon", "Fairy"];
 $statuses = ["Caught", "Not Caught"];
 $statuses = array_map(function ($v) {
     return ["label" => $v, "value" => strtolower($v)];
