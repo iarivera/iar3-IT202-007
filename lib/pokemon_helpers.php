@@ -1,5 +1,5 @@
 <?php
-$VALID_ORDER_COLUMNS = ["name", "type_1", "type_2", "caught", "created", "modified"];
+$VALID_ORDER_COLUMNS = ["type_1", "created", "modified"];
 
 function get_pokemon() {
     $db = getDB();
@@ -122,7 +122,8 @@ function _build_search_query(&$params, $search)
                 WHEN c.caught = '0' THEN 'Not Caught'
                 WHEN c.caught = '1' THEN 'Caught'
                 ELSE 'N/A'
-            END as caught,
+            END as caught
+            FROM CA_Pokemon c
             WHERE 1=1";
     foreach ($search as $key => $value) {
         if ($value == 0 || !empty($value)) {
@@ -144,7 +145,7 @@ function _build_search_query(&$params, $search)
                     }
                     if (count($keys) > 0) {
                         $keys = join(",", $keys);
-                        $query .= " AND c.type";
+                        $query .= " AND c.type_1";
                     }
                     break;
                 case 'type_2':
@@ -160,7 +161,7 @@ function _build_search_query(&$params, $search)
                     }
                     if (count($keys) > 0) {
                         $keys = join(",", $keys);
-                        $query .= " AND c.type";
+                        $query .= " AND c.type_2";
                     }
                     break;
                 case 'caught':
@@ -176,7 +177,7 @@ function _build_search_query(&$params, $search)
     }
 
     if (!has_role("Admin")) {
-        $query .= " AND status != 'unavailable'";
+        $query .= " AND caught != '0'";
     }
     // order by
     if (isset($search["column"]) && !empty($search["column"]) && isset($search["order"]) && !empty($search["order"])) {
