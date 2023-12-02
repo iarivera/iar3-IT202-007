@@ -45,7 +45,6 @@ function validate_mons($mons) {
     // Pokemon typings (should be similar to cat breed)
     $type1 = (int)se($mons, "type_1", 0, false);
     if($type1 === 0) {
-        flash("Pokemon needs a typing", "warning");
         $has_error = false;
     }
     $type2 = (int)se($mons, "type_2", 0, false);
