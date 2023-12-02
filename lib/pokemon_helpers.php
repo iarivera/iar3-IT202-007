@@ -1,5 +1,5 @@
 <?php
-$VALID_ORDER_COLUMNS = ["name", "created", "modified"];
+$VALID_ORDER_COLUMNS = ["name", "type_1", "type_2", "caught", "created", "modified"];
 
 function get_pokemon() {
     $db = getDB();
@@ -110,14 +110,58 @@ function search_mons()
 function _build_search_query(&$params, $search)
 {
     $query = "SELECT
+            c.id,
             c.name,
-            WHERE 1=1";
+            c.type_1,
+            c.type_2,
+            CASE
+                WHEN c.caught = '0' THEN 'Not Caught'
+                WHEN c.caught = '1' THEN 'Caught'
+                ELSE 'N/A'
+            END as caught
+            WHEN 1=1";
     foreach ($search as $key => $value) {
         if ($value == 0 || !empty($value)) {
             switch ($key) {
                 case 'name':
                     $params[":name"] = "%$value%";
                     $query .= " AND c.name like :name";
+                    break;
+                case 'type_1':
+                    $i = 0;
+                    $keys = [];
+                    foreach ($value as $t) {
+                        if (empty($t)) {
+                            continue;
+                        }
+                        $params[":t$i"] = $t;
+                        array_push($keys, ":t$i");
+                        $i++;
+                    }
+                    if (count($keys) > 0) {
+                        $keys = join(",", $keys);
+                        $query .= " AND c.type";
+                    }
+                    break;
+                case 'type_2':
+                    $i = 0;
+                    $keys = [];
+                    foreach ($value as $t) {
+                        if (empty($t)) {
+                            continue;
+                        }
+                        $params[":t$i"] = $t;
+                        array_push($keys, ":t$i");
+                        $i++;
+                    }
+                    if (count($keys) > 0) {
+                        $keys = join(",", $keys);
+                        $query .= " AND c.type";
+                    }
+                    break;
+                case 'caught':
+                    $params[":caught"] = $value;
+                    $query .= " AND caught = :caught";
                     break;
                 case 'id':
                     $params[":id"] = $value;
