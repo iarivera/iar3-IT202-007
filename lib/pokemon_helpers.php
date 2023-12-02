@@ -119,7 +119,7 @@ function _build_search_query(&$params, $search)
                 WHEN c.caught = '1' THEN 'Caught'
                 ELSE 'N/A'
             END as caught
-            WHEN 1=1";
+            WHERE 1=1";
     foreach ($search as $key => $value) {
         if ($value == 0 || !empty($value)) {
             switch ($key) {
