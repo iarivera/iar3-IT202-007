@@ -3,7 +3,7 @@ $VALID_ORDER_COLUMNS = ["name", "type_1", "type_2", "caught", "created", "modifi
 
 function get_pokemon() {
     $db = getDB();
-    $query = "SELECT id, name FROM CA_Pokemon";
+    $query = "SELECT id, api_id, name FROM CA_Pokemon";
     $stmt = $db->prepare($query);
     try {
         $stmt->execute();
@@ -43,9 +43,13 @@ function validate_mons($mons) {
         $has_error = false;
     }
     // Pokemon typings (should be similar to cat breed)
-    $type = (int)se($mons, "", 0, false);
-    if($type === 0) {
+    $type1 = (int)se($mons, "type_1", 0, false);
+    if($type1 === 0) {
         flash("Pokemon needs a typing", "warning");
+        $has_error = false;
+    }
+    $type2 = (int)se($mons, "type_2", 0, false);
+    if($type2 === 0) {
         $has_error = false;
     }
 
@@ -63,7 +67,7 @@ function get_pokemon_by_id($id)
     try {
         $stmt->execute();
         $result = $stmt->fetch();
-        //error_log("Breed results: " . var_export($result, true));
+        //error_log("Pokemon results: " . var_export($result, true));
         return $result;
     } catch (PDOException $e) {
         error_log("Error fetching Pokemon from db: " . var_export($e, true));
@@ -118,7 +122,7 @@ function _build_search_query(&$params, $search)
                 WHEN c.caught = '0' THEN 'Not Caught'
                 WHEN c.caught = '1' THEN 'Caught'
                 ELSE 'N/A'
-            END as caught
+            END as caught,
             WHERE 1=1";
     foreach ($search as $key => $value) {
         if ($value == 0 || !empty($value)) {
@@ -194,8 +198,6 @@ function _build_search_query(&$params, $search)
     }
     // limit last
     $query .= " LIMIT 10";
-
-
     return $query;
 }
 /**
