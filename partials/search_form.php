@@ -22,8 +22,8 @@ array_unshift($pokemon, ["label" => "Any", "value" => ""]);
 $types = get_types();
 $types = array_map(function ($v) {
     return ["label" => $v["name"], "value" => $v["id"]];
-}, $temps);
-array_unshift($temps, ["label" => "Any", "value" => ""]);
+}, $types);
+array_unshift($types, ["label" => "Any", "value" => ""]);
 
 // make columns options for order by map order columns
 $cols = array_map(function ($v) {
