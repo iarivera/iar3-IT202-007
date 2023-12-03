@@ -18,6 +18,13 @@ $pokemon = array_map(function ($v) {
 }, $result);
 array_unshift($pokemon, ["label" => "Any", "value" => ""]);
 
+// get typings
+$types = get_types();
+$types = array_map(function ($v) {
+    return ["label" => $v["name"], "value" => $v["id"]];
+}, $temps);
+array_unshift($temps, ["label" => "Any", "value" => ""]);
+
 // make columns options for order by map order columns
 $cols = array_map(function ($v) {
     return ["label" => $v, "value" => strtolower($v)];

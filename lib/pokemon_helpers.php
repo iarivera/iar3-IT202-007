@@ -1,5 +1,5 @@
 <?php
-$VALID_ORDER_COLUMNS = ["type_1", "created", "modified"];
+$VALID_ORDER_COLUMNS = [ "created", "modified"];
 
 function get_pokemon() {
     $db = getDB();
@@ -74,6 +74,22 @@ function get_pokemon_by_id($id)
     return [];
 }
 
+function get_types()
+{
+    $db = getDB();
+    $query = "SELECT id, name, FROM CA_Pokemon_Types;";
+    $stmt = $db->prepare($query);
+    try {
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        return $result;
+    } catch (PDOException $e) {
+        error_log("Error fetching types from db: " . var_export($e, true));
+    }
+    return [];
+
+}
+
 function search_mons()
 {
     // Initialize variables
@@ -122,7 +138,8 @@ function _build_search_query(&$params, $search)
                 WHEN c.caught = '1' THEN 'Caught'
                 ELSE 'N/A'
             END as caught
-            FROM CA_Pokemon c
+            FROM 
+            CA_Pokemon as c JOIN CA_Pokemon_Types as b on c.type_1 = b.id
             WHERE 1=1";
     foreach ($search as $key => $value) {
         if ($value == 0 || !empty($value)) {
