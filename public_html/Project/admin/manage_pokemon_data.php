@@ -28,6 +28,8 @@ function insert_pokemon_into_db($db, $pokemon, $mappings)
         
         $query .= implode(",", $values);
 
+        // iar3 12/02/2001 this code checks if any duplicate items will be pulled
+        // and only leaves old data alone
         // Generate the ON DUPLICATE KEY UPDATE clause
         $updates = array_reduce($cols, function ($carry, $col) {
             $carry[] = "`$col` = VALUES(`$col`)";
@@ -66,6 +68,8 @@ function process_single_mon($mon, $columns, $mappings)
     // Process Pokemon Type
     $type = $mon["type"];    
     // Prepare record
+    // iar3 12/02/2023 this code shows how data is mapped, with
+    // the names being mapped to columns from the API 
     $record = [];
     $record["api_id"] = se($mon, "pokemon_id", "", false);
     $record["name"] = se($mon, "pokemon_name", "", false);
@@ -135,6 +139,7 @@ function process_pokemon($result)
     insert_pokemon_into_db($db, $pokemon, $mappings);
 }
 
+//iar3 12/02/2023, this is the API call that fetches all the data needed
 $action = se($_POST, "action", "", false);
 if ($action) {
     switch ($action) {
