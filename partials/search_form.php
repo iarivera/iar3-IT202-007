@@ -50,6 +50,9 @@ array_unshift($orders, ["label" => "Any", "value" => ""]);
             <?php render_input(["type" => "select", "id" => "column", "name" => "column", "label" => "Columns", "options" => $cols, "value" => se($search, "column", "", false)]); ?>
         </div>
         <div class="col-2">
+            <?php render_input(["type" => "select", "id" => "name", "name" => "name[]", "label" => "Type", "options" => $types, "value" => isset($search["name"]) ? $search["name"] : []]); ?>
+        </div>
+        <div class="col-2">
             <?php render_input(["type" => "select", "id" => "order", "name" => "order", "label" => "Order", "options" => $orders, "value" => se($search, "order", "", false)]); ?>
         </div>
     </div>
