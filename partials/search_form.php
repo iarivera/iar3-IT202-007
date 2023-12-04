@@ -18,13 +18,6 @@ $pokemon = array_map(function ($v) {
 }, $result);
 array_unshift($pokemon, ["label" => "Any", "value" => ""]);
 
-// get typings
-$types = get_types();
-$types = array_map(function ($v) {
-    return ["label" => $v["name"], "value" => $v["id"]];
-}, $types);
-array_unshift($types, ["label" => "Any", "value" => ""]);
-
 // make columns options for order by map order columns
 $cols = array_map(function ($v) {
     return ["label" => $v, "value" => strtolower($v)];
@@ -48,9 +41,6 @@ array_unshift($orders, ["label" => "Any", "value" => ""]);
         </div>
         <div class="col-2">
             <?php render_input(["type" => "select", "id" => "column", "name" => "column", "label" => "Columns", "options" => $cols, "value" => se($search, "column", "", false)]); ?>
-        </div>
-        <div class="col-2">
-            <?php render_input(["type" => "select", "id" => "name", "name" => "name[]", "label" => "Type", "options" => $types, "value" => isset($search["name"]) ? $search["name"] : []]); ?>
         </div>
         <div class="col-2">
             <?php render_input(["type" => "select", "id" => "order", "name" => "order", "label" => "Order", "options" => $orders, "value" => se($search, "order", "", false)]); ?>
