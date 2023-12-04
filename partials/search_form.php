@@ -1,14 +1,14 @@
 <?php
-$statuses = ["Caught", "Not Caught"];
+$caught = ["Caught", "Not Caught"];
 if (!has_role("Admin")) {
-    $statuses = array_filter($statuses, function ($v) {
+    $caught = array_filter($caught, function ($v) {
         return $v !== "Unavailable";
     });
 }
-$statuses = array_map(function ($v) {
+$caught = array_map(function ($v) {
     return ["label" => $v, "value" => strtolower($v)];
-}, $statuses);
-array_unshift($statuses, ["label" => "Any", "value" => ""]);
+}, $caught);
+array_unshift($caught, ["label" => "Any", "value" => ""]);
 
 // get the pokemon
 $result = get_pokemon();
@@ -37,7 +37,7 @@ array_unshift($orders, ["label" => "Any", "value" => ""]);
             <?php render_input(["type" => "text", "id" => "name", "name" => "name", "label" => "Name", "value" => se($search, "name", "", false)]); ?>
         </div>
         <div class="col-auto">
-            <?php render_input(["type" => "select", "id" => "status", "name" => "status", "label" => "Status", "options" => $statuses, "value" => se($search, "status", "", false)]); ?>
+            <?php render_input(["type" => "select", "id" => "caught", "name" => "caught", "label" => "Caught", "options" => $caught, "value" => se($search, "caught", "", false)]); ?>
         </div>
         <div class="col-2">
             <?php render_input(["type" => "select", "id" => "column", "name" => "column", "label" => "Columns", "options" => $cols, "value" => se($search, "column", "", false)]); ?>
