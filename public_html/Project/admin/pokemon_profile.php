@@ -44,7 +44,7 @@ if (count($_POST) > 0) {
 if ($id > 0) {
     $db = getDB();
     // query happens here
-    $query = "SELECT name, type_1, type_2, caught FROM CA_Pokemon as CC WHERE id = :id";
+    $query = "SELECT name, type_1, type_2 FROM CA_Pokemon as CC WHERE id = :id";
     $stmt = $db->prepare($query);
     try {
         $stmt->execute([":id" => $id]);
