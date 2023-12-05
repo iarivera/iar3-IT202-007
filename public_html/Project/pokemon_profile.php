@@ -48,7 +48,15 @@ if ($pokemon_id != 0) {
                 </div>
                 <div class="col">
                     <div><strong>About:</strong><br>
-                        <p><?php se($mons, "name")?> is a <?php se($mons,"type_1")?> type pokemon from the
+                        <p>
+                            <?php se($mons, "name")?> is a <?php se($mons,"type_1")?>
+                        <?php
+                            if ($mons["type_2"] != "None" || $mons["type_2"] != "")
+                            {
+                                echo "and " . $mons["type_2"];
+                            }
+                        ?>
+                        type pokemon from the
                             <?php
                                 if ($mons["id"] < 152) {
                                     echo "Kanto";

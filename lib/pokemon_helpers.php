@@ -116,6 +116,7 @@ function _build_search_query(&$params, $search)
             c.id,
             c.name,
             c.type_1,
+            c.type_2,
             CASE
                 WHEN c.caught = '0' THEN 'Not Caught'
                 WHEN c.caught = '1' THEN 'Caught'
