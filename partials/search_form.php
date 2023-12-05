@@ -18,6 +18,13 @@ $pokemon = array_map(function ($v) {
 }, $result);
 array_unshift($pokemon, ["label" => "Any", "value" => ""]);
 
+// filter by Pokemon types
+$pokemonTypes = ["Normal", "Fire", "Water", "Electric", "Grass", "Ice", "Fighting", "Poison", "Ground", "Flying", "Psychic", "Bug", "Rock", "Ghost", "Dark", "Steel", "Dragon", "Fairy"];
+$pokemonTypes = array_map(function ($v) {
+    return ["label" => $v, "value" => strtolower($v)];
+}, $pokemonTypes); //$VALID_ORDER_COLUMNS is defined in pokemon_helpers.php
+array_unshift($pokemonTypes, ["label" => "Any", "value" => ""]);
+
 // make columns options for order by map order columns
 $cols = array_map(function ($v) {
     return ["label" => $v, "value" => strtolower($v)];
@@ -38,6 +45,9 @@ array_unshift($orders, ["label" => "Any", "value" => ""]);
         </div>
         <div class="col-auto">
             <?php render_input(["type" => "select", "id" => "caught", "name" => "caught", "label" => "Caught", "options" => $caught, "value" => se($search, "caught", "", false)]); ?>
+        </div>
+        <div class="col-2">
+            <?php render_input(["type" => "select", "id" => "type_1", "name" => "type_1", "label" => "Type", "options" => $pokemonTypes, "value" => se($search, "type_1", "", false)]); ?>
         </div>
         <div class="col-2">
             <?php render_input(["type" => "select", "id" => "column", "name" => "column", "label" => "Columns", "options" => $cols, "value" => se($search, "column", "", false)]); ?>

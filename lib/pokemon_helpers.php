@@ -116,7 +116,6 @@ function _build_search_query(&$params, $search)
             c.id,
             c.name,
             c.type_1,
-            c.type_2,
             CASE
                 WHEN c.caught = '0' THEN 'Not Caught'
                 WHEN c.caught = '1' THEN 'Caught'
@@ -132,36 +131,8 @@ function _build_search_query(&$params, $search)
                     $query .= " AND c.name like :name";
                     break;
                 case 'type_1':
-                    $i = 0;
-                    $keys = [];
-                    foreach ($value as $t) {
-                        if (empty($t)) {
-                            continue;
-                        }
-                        $params[":t$i"] = $t;
-                        array_push($keys, ":t$i");
-                        $i++;
-                    }
-                    if (count($keys) > 0) {
-                        $keys = join(",", $keys);
-                        $query .= " AND c.type_1";
-                    }
-                    break;
-                case 'type_2':
-                    $i = 0;
-                    $keys = [];
-                    foreach ($value as $t) {
-                        if (empty($t)) {
-                            continue;
-                        }
-                        $params[":t$i"] = $t;
-                        array_push($keys, ":t$i");
-                        $i++;
-                    }
-                    if (count($keys) > 0) {
-                        $keys = join(",", $keys);
-                        $query .= " AND c.type_2";
-                    }
+                    $params[":type_1"] = $value;
+                    $query .= " AND type_1 = :type_1";
                     break;
                 case 'caught':
                     $params[":caught"] = $value;
