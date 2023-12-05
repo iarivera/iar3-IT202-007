@@ -60,8 +60,10 @@ if ($id > 0) {
         flash("An unhandled error occurred", "danger");
     }
 }
-?>
-<div class="container-fluid>">
+$data = $_GET;
+unset($data["id"]);
+$back = "admin/list_pokemon.php?" . http_build_query($data);
+?><div class="container-fluid>">
     <h1>Pokemon Profile</h1>
     <form method="POST">
         <?php render_input(["type" => "text", "id" => "name", "name" => "name", "label" => "Name", "rules" => ["minlength" => 2, "required" => true], "value" => se($mons, "name", "", false)]) ?>
