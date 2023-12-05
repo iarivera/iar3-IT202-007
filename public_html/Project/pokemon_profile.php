@@ -22,7 +22,7 @@ if ($pokemon_id != 0) {
     <h1>Current Pokemon</h1>
     <div class="card">
         <div class="card-header text-center">
-            <?php se($mons); ?>
+            <?php se($mons, "caught"); ?>
         </div>
         <div class="card-body">
             <div class="row">

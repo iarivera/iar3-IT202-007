@@ -1,7 +1,7 @@
 <?php if (isset($data)) : error_log("Pokemon data: " . var_export($data, true)); ?>
 <div class="card" style="width:15em">
         <div class="Pokemon-header">
-            <?php se($data, "status", "Not Caught"); ?>
+            <?php se($data, "caught"); ?>
         </div>
         <img class="p-3" style="width: 100%; aspect-ratio: 1; object-fit: scale-down; max-height: 256px;" src="images/missingNo.png"; ?>
         <div class="card-body">
