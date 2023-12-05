@@ -56,34 +56,37 @@ if ($pokemon_id != 0) {
                                 echo "and " . $mons["type_2"];
                             }
                         ?>
-                        type pokemon from the
+                        type pokemon from
                             <?php
                                 if ($mons["id"] < 152) {
-                                    echo "Kanto";
+                                    echo "the Kanto";
                                 }
                                 elseif ($mons["id"] < 252) {
-                                    echo "Johto";
+                                    echo "the Johto";
                                 }
                                 elseif ($mons["id"] < 387) {
-                                    echo "Hoenn";
+                                    echo "the Hoenn";
                                 }
                                 elseif ($mons["id"] < 494) {
-                                    echo "Sinnoh";
+                                    echo "the Sinnoh";
                                 }
                                 elseif ($mons["id"] < 650) {
-                                    echo "Unova";
+                                    echo "the Unova";
                                 }
                                 elseif ($mons["id"] < 722) {
-                                    echo "Kalos";
+                                    echo "the Kalos";
                                 }
                                 elseif ($mons["id"] < 810) {
-                                    echo "Alola";
+                                    echo "the Alola";
                                 }
                                 elseif ($mons["id"] < 906) {
-                                    echo "Galar";
+                                    echo "the Galar";
                                 }
                                 elseif ($mons["id"] < 1009) {
-                                    echo "Paldea";
+                                    echo "the Paldea";
+                                }
+                                else {
+                                    echo "an unknown";
                                 }
                             ?>
                             region.
