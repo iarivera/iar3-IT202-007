@@ -1,15 +1,15 @@
 <?php if (isset($data)) : error_log("Pokemon data: " . var_export($data, true)); ?>
 <div class="card" style="width:15em">
         <div class="Pokemon-header">
-            <?php se($data, "status", "N/A"); ?>
+            <?php se($data, "status", "Not Caught"); ?>
         </div>
-        <img class="p-3" style="width: 100%; aspect-ratio: 1; object-fit: scale-down; max-height: 256px;" src="<?php se($urls, 0, get_url("images/missingNo.png")); ?>" />
+        <img class="p-3" style="width: 100%; aspect-ratio: 1; object-fit: scale-down; max-height: 256px;" src="images/missingNo.png"; ?>" />
         <div class="card-body">
             <h5 class="card-title"><?php se($data, "name"); ?></h5>
             <p class="card-text">
                 <br>
             </p>
-            <p class="card-text"><strong>About:</strong><br><?php se($data, "description"); ?></p>
+            <p class="card-text"><strong>About:</strong><br><?php se($data, "id"); ?></p>
         </div>
         <div class="card-footer">
             <?php $id = se($data, "id", -1, false);

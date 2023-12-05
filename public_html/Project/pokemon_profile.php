@@ -27,7 +27,7 @@ if ($pokemon_id != 0) {
         <div class="card-body">
             <div class="row">
                 <div class="col">
-                    <h5 class="card-title"><?php se($mons, "name"); ?> - <?php se($mons, "type_1"); ?>  - <?php se($mons, "type_2"); ?></h5>
+                    <h5 class="card-title"><?php se($mons, "name"); ?></h5>
                 </div>
             </div>
             <div class="row">
@@ -41,21 +41,46 @@ if ($pokemon_id != 0) {
                         ?>
                         <?php foreach ($urls as $url) : ?>
                             <div class="col">
-                                <img class="p-3" style="width: 100%; aspect-ratio: 1; object-fit: scale-down; max-height: 256px;" src="<?php se($url, null, get_url("images/missingNo.png")); ?>" />
+                                <img class="p-3" style="width: 100%; aspect-ratio: 1; object-fit: scale-down; max-height: 256px;" src="images/missingNo.png"; ?>
                             </div>
                         <?php endforeach; ?>
                     </div>
                 </div>
                 <div class="col">
                     <div><strong>About:</strong><br>
-                        <?php se($mons, "description"); ?>
+                        <p><?php se($mons, "name")?> is a <?php se($mons,"type_1")?> type pokemon from the
+                            <?php
+                                if ($mons["id"] < 152) {
+                                    echo "Kanto";
+                                }
+                                elseif ($mons["id"] < 252) {
+                                    echo "Johto";
+                                }
+                                elseif ($mons["id"] < 387) {
+                                    echo "Hoenn";
+                                }
+                                elseif ($mons["id"] < 494) {
+                                    echo "Sinnoh";
+                                }
+                                elseif ($mons["id"] < 650) {
+                                    echo "Unova";
+                                }
+                                elseif ($mons["id"] < 722) {
+                                    echo "Kalos";
+                                }
+                                elseif ($mons["id"] < 810) {
+                                    echo "Alola";
+                                }
+                                elseif ($mons["id"] < 906) {
+                                    echo "Galar";
+                                }
+                                elseif ($mons["id"] < 1009) {
+                                    echo "Paldea";
+                                }
+                            ?>
+                            region.
+                        </p>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <h5>Info</h5>
-                    <div><strong>Pokemon: </strong><?php se($mons); ?></div>
                 </div>
             </div>
         </div>
