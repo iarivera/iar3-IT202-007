@@ -1,5 +1,5 @@
 <?php
-$caught = ["Caught", "Not Caught"];
+$caught = ["Not Caught", "Caught"];
 if (!has_role("Admin")) {
     $caught = array_filter($caught, function ($v) {
         return $v !== "Unavailable";
