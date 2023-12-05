@@ -14,5 +14,3 @@ function get_url($dest, $echo = false)
     }
     return $path;
 }
-
-

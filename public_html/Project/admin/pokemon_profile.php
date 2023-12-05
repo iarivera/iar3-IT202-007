@@ -37,7 +37,7 @@ if (count($_POST) > 0) {
     }
     if ($mons_id > 0) {
         flash("Successfully set profile for " . $mons["name"], "success");
-        redirect("admin/pokemon_profile.php?id=$mons_id");
+        redirect("pokemon_profile.php?id=$mons_id");
     }
 }
 

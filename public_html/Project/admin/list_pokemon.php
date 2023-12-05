@@ -8,7 +8,7 @@ if (!has_role("Admin")) {
 }
 
 $mons = search_mons(); // will define later
-$table = ["data" => $mons, "delete_url" => "admin/disable_pokemon_profile.php", "view_url" => "admin/pokemon_profile.php", "edit_url" => "admin/pokemon_profile.php"];
+$table = ["data" => $mons, "delete_url" => "disable_pokemon_profile.php", "view_url" => "pokemon_profile.php", "edit_url" => "pokemon_profile.php"];
 
 ?>
 <div class="container-fluid">
