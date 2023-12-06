@@ -19,6 +19,7 @@ $table = ["data" => $mons, "delete_url" => "disable_pokemon_profile.php", "view_
     <div>
         <?php render_table($table); ?>
     </div>
+    /*Include pagination file here */
 </div>
 
 <?php

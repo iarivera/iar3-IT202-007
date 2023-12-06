@@ -74,7 +74,7 @@ function get_pokemon_by_id($id)
     return [];
 }
 
-function search_mons()
+function search_mons() //put in new pokemon_search.php file 
 {
     // Initialize variables
     global $search; //make search available outside of this function
@@ -108,8 +108,11 @@ function search_mons()
     return $mons;
 }
 
+//Make get_potential_total_records($query, $params),
+//_build_where_clause(&$query, &$params, $search)
+
 // Note: & tells php to pass by reference so any changes made to $params are reflected outside of the function
-// Need to fix
+// Need to move into pokemon_search.php
 function _build_search_query(&$params, $search)
 {
     $query = "SELECT
@@ -174,6 +177,7 @@ function _build_search_query(&$params, $search)
 }
 /**
  * Dynamically binds parameters based on value data type
+ * Also put into pokemon_search.php
  */
 function bind_params($stmt, $params)
 {
