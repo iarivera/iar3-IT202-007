@@ -121,8 +121,8 @@ function _build_search_query(&$params, $search)
             c.type_1,
             c.type_2,
             CASE
-                WHEN c.caught = '0' THEN 'Not Caught'
-                WHEN c.caught = '1' THEN 'Caught'
+                WHEN c.caught = 'Not Caught' THEN 'Not Caught'
+                WHEN c.caught = 'Caught' THEN 'Caught'
                 ELSE 'N/A'
             END as caught
             FROM CA_Pokemon c

@@ -19,7 +19,7 @@ if ($id <= 0) {
     flash("Invalid Pokemon", "danger");
 } else {
     $db = getDB();
-    $query = "UPDATE CA_Pokemon set status = 'caught' WHERE id = :id";
+    $query = "UPDATE CA_Pokemon set status = 'Caught' WHERE id = :id";
     $stmt = $db->prepare($query);
     try {
         $stmt->execute([":id" => $id]);
