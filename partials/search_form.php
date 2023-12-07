@@ -44,13 +44,10 @@ array_unshift($orders, ["label" => "Any", "value" => ""]);
             <?php render_input(["type" => "text", "id" => "name", "name" => "name", "label" => "Name", "value" => se($search, "name", "", false)]); ?>
         </div>
         <div class="col-auto">
-            <?php render_input(["type" => "select", "id" => "caught", "name" => "caught", "label" => "Caught", "options" => $caught, "value" => se($search, "caught", "", false)]); ?>
-        </div>
-        <div class="col-2">
             <?php render_input(["type" => "select", "id" => "type_1", "name" => "type_1", "label" => "Type", "options" => $pokemonTypes, "value" => se($search, "type_1", "", false)]); ?>
         </div>
         <div class="col-2">
-            <?php render_input(["type" => "select", "id" => "column", "name" => "column", "label" => "Columns", "options" => $cols, "value" => se($search, "column", "", false)]); ?>
+            <?php render_input(["type" => "select", "id" => "caught", "name" => "caught", "label" => "Caught", "options" => $caught, "value" => se($search, "caught", "", false)]); ?>
         </div>
         <div class="col-2">
             <?php render_input(["type" => "select", "id" => "order", "name" => "order", "label" => "Order", "options" => $orders, "value" => se($search, "order", "", false)]); ?>
