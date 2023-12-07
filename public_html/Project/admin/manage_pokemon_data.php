@@ -161,5 +161,11 @@ if ($action) {
                 <input type="submit" class="btn btn-primary" value="Refresh Pokemon" />
             </form>
         </div>
+        <div class="col">
+            <a class="btn btn-secondary" href="<?php get_url("admin/pokemon_profile.php", true); ?>">Create Pokemon</a>
+        </div>
+        <div class="col">
+            <a class="btn btn-secondary" href="<?php get_url("admin/list_pokemon.php", true); ?>">List Pokemon</a>
+        </div>
     </div>
 </div>
