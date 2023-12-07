@@ -1,19 +1,18 @@
 <?php if (isset($data)) : error_log("Pokemon data: " . var_export($data, true)); ?>
 <div class="card" style="width:15em">
         <div class="Pokemon-header">
-            <?php se($data, "caught"); ?>
         </div>
         <img class="p-3" style="width: 100%; aspect-ratio: 1; object-fit: scale-down; max-height: 256px;" src="images/missingNo.png"; ?>
         <div class="card-body">
-            <h5 class="card-title"><?php se($data, "name"); ?></h5>
+            <h5 class="card-title"><?php se($data, "label"); ?></h5>
             <p class="card-text">
                 <br>
             </p>
-            <p class="card-text"><strong>About:</strong><br><?php se($data, "id"); ?></p>
+            <p class="card-text"><strong>About:</strong><br>Pokemon number <?php se($data, "value"); ?></p>
         </div>
         <div class="card-footer">
-            <?php $id = se($data, "id", -1, false);
-            $is_single_view = !isset($_GET["id"]);
+            <?php $id = se($data, "value", -1, false);
+            $is_single_view = !isset($_GET["value"]);
             ?>
             <div class="row">
                 <?php if ($is_single_view) : /* if used in single view don't add link*/ ?>
