@@ -27,7 +27,9 @@ function insert_pokemon_into_db($db, $pokemon, $mappings)
         }
         
         $query .= implode(",", $values);
-        // Generate the ON DUPLICATE KEY UPDATE clause
+
+        // iar3 12/02/2001 this code checks if any duplicate items will be pulled
+        // and only leaves old data alone
         $updates = array_reduce($cols, function ($carry, $col) {
             $carry[] = "`$col` = VALUES(`$col`)";
             return $carry;
@@ -58,8 +60,17 @@ function insert_pokemon_into_db($db, $pokemon, $mappings)
 
 function process_single_mon($mon, $columns, $mappings)
 {
+    // Process Pokemon Type
+    $type = $mon["type"];    
+    // Prepare record
+    // iar3 12/02/2023 this code shows how data is mapped, with
+    // the names being mapped to columns from the API 
     $record = [];
-    $record["api_id"] = se($mon, "id", "", false);
+    $record["api_id"] = se($mon, "pokemon_id", "", false);
+    $record["name"] = se($mon, "pokemon_name", "", false);
+    $record["type_1"] = $type[0];
+    $record["type_2"] = $type[1];
+    
 
     foreach ($columns as $column) {
         if(in_array($column, ["id", "api_id"])){
@@ -121,6 +132,7 @@ function process_pokemon($result)
     insert_pokemon_into_db($db, $pokemon, $mappings);
 }
 
+//iar3 12/02/2023, this is the API call that fetches all the data needed
 $action = se($_POST, "action", "", false);
 if ($action) {
     switch ($action) {
@@ -141,6 +153,12 @@ if ($action) {
                 <input type="hidden" name="action" value="pokemon" />
                 <input type="submit" class="btn btn-primary" value="Refresh Pokemon" />
             </form>
+        </div>
+        <div class="col">
+            <a class="btn btn-secondary" href="<?php get_url("admin/pokemon_profile.php", true); ?>">Create Pokemon</a>
+        </div>
+        <div class="col">
+            <a class="btn btn-secondary" href="<?php get_url("admin/list_pokemon.php", true); ?>">List Pokemon</a>
         </div>
     </div>
 </div>

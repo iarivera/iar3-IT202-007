@@ -4,7 +4,7 @@ CREATE TABLE CA_Pokemon(
     `name` VARCHAR(30),
     `type_1` VARCHAR(30),
     `type_2` VARCHAR(30),
-    `caught` BOOLEAN,
+    `caught` VARCHAR(20) NOT NULL DEFAULT 'Not Caught',
     `created`   timestamp default current_timestamp,
     `modified`  timestamp default current_timestamp on update current_timestamp,
     PRIMARY KEY(`id`),

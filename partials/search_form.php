@@ -1,14 +1,14 @@
 <?php
-$statuses = ["Caught", "Not Caught"];
+$caught = ["Not Caught", "Caught"];
 if (!has_role("Admin")) {
-    $statuses = array_filter($statuses, function ($v) {
+    $caught = array_filter($caught, function ($v) {
         return $v !== "Unavailable";
     });
 }
-$statuses = array_map(function ($v) {
+$caught = array_map(function ($v) {
     return ["label" => $v, "value" => strtolower($v)];
-}, $statuses);
-array_unshift($statuses, ["label" => "Any", "value" => ""]);
+}, $caught);
+array_unshift($caught, ["label" => "Any", "value" => ""]);
 
 // get the pokemon
 $result = get_pokemon();
@@ -17,6 +17,13 @@ $pokemon = array_map(function ($v) {
     return ["label" => $v["name"], "value" => $v["id"]];
 }, $result);
 array_unshift($pokemon, ["label" => "Any", "value" => ""]);
+
+// filter by Pokemon types
+$pokemonTypes = ["Normal", "Fire", "Water", "Electric", "Grass", "Ice", "Fighting", "Poison", "Ground", "Flying", "Psychic", "Bug", "Rock", "Ghost", "Dark", "Steel", "Dragon", "Fairy"];
+$pokemonTypes = array_map(function ($v) {
+    return ["label" => $v, "value" => strtolower($v)];
+}, $pokemonTypes); //$VALID_ORDER_COLUMNS is defined in pokemon_helpers.php
+array_unshift($pokemonTypes, ["label" => "Any", "value" => ""]);
 
 // make columns options for order by map order columns
 $cols = array_map(function ($v) {
@@ -37,10 +44,10 @@ array_unshift($orders, ["label" => "Any", "value" => ""]);
             <?php render_input(["type" => "text", "id" => "name", "name" => "name", "label" => "Name", "value" => se($search, "name", "", false)]); ?>
         </div>
         <div class="col-auto">
-            <?php render_input(["type" => "select", "id" => "status", "name" => "status", "label" => "Status", "options" => $statuses, "value" => se($search, "status", "", false)]); ?>
+            <?php render_input(["type" => "select", "id" => "type_1", "name" => "type_1", "label" => "Type", "options" => $pokemonTypes, "value" => se($search, "type_1", "", false)]); ?>
         </div>
         <div class="col-2">
-            <?php render_input(["type" => "select", "id" => "column", "name" => "column", "label" => "Columns", "options" => $cols, "value" => se($search, "column", "", false)]); ?>
+            <?php render_input(["type" => "select", "id" => "caught", "name" => "caught", "label" => "Caught", "options" => $caught, "value" => se($search, "caught", "", false)]); ?>
         </div>
         <div class="col-2">
             <?php render_input(["type" => "select", "id" => "order", "name" => "order", "label" => "Order", "options" => $orders, "value" => se($search, "order", "", false)]); ?>

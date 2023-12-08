@@ -1,17 +1,30 @@
 <?php
-$VALID_ORDER_COLUMNS = ["name", "created", "modified"];
+$VALID_ORDER_COLUMNS = ["created", "modified"];
 
 function get_pokemon() {
     $db = getDB();
-    $query = "SELECT id, api_id, name FROM CA_Pokemon_Stats";
+    $query = "SELECT id, api_id, name FROM CA_Pokemon";
     $stmt = $db->prepare($query);
     try {
         $stmt->execute();
         $result = $stmt->fetchAll();
-        //error_log("Breed results: " . var_export($result, true));
         return $result;
     } catch (PDOException $e) {
-        error_log("Error fetching breeds from db: " . var_export($e, true));
+        error_log("Error fetching Pokemon from db: " . var_export($e, true));
+    }
+    return [];
+}
+
+function get_pokemon_by_type() {
+    $db = getDB();
+    $query = "SELECT type_1 from CA_Pokemon";
+    $stmt = $db->prepare($query);
+    try {
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        return $result;
+    } catch (PDOException $e) {
+        error_log("Error searching Pokemon by type: " . var_export($e, true));
     }
     return [];
 }
@@ -30,9 +43,8 @@ function validate_mons($mons) {
         $has_error = false;
     }
     // Pokemon typings (should be similar to cat breed)
-    $type = (int)se($mons, "", 0, false);
-    if($type === 0) {
-        flash("Pokemon needs a typing", "warning");
+    $type1 = (int)se($mons, "type_1", 0, false);
+    if($type1 === 0) {
         $has_error = false;
     }
     return !$has_error;
@@ -49,7 +61,7 @@ function get_pokemon_by_id($id)
     try {
         $stmt->execute();
         $result = $stmt->fetch();
-        //error_log("Breed results: " . var_export($result, true));
+        //error_log("Pokemon results: " . var_export($result, true));
         return $result;
     } catch (PDOException $e) {
         error_log("Error fetching Pokemon from db: " . var_export($e, true));
@@ -57,7 +69,7 @@ function get_pokemon_by_id($id)
     return [];
 }
 
-function search_mons()
+function search_mons() //put in new pokemon_search.php file 
 {
     // Initialize variables
     global $search; //make search available outside of this function
@@ -91,12 +103,24 @@ function search_mons()
     return $mons;
 }
 
+//Make get_potential_total_records($query, $params),
+//_build_where_clause(&$query, &$params, $search)
+
 // Note: & tells php to pass by reference so any changes made to $params are reflected outside of the function
-// Need to fix
+// Need to move into pokemon_search.php
 function _build_search_query(&$params, $search)
 {
     $query = "SELECT
+            c.id,
             c.name,
+            c.type_1,
+            c.type_2,
+            CASE
+                WHEN c.caught = 'Not Caught' THEN 'Not Caught'
+                WHEN c.caught = 'Caught' THEN 'Caught'
+                ELSE 'N/A'
+            END as caught
+            FROM CA_Pokemon c
             WHERE 1=1";
     foreach ($search as $key => $value) {
         if ($value == 0 || !empty($value)) {
@@ -104,6 +128,14 @@ function _build_search_query(&$params, $search)
                 case 'name':
                     $params[":name"] = "%$value%";
                     $query .= " AND c.name like :name";
+                    break;
+                case 'type_1':
+                    $params[":type_1"] = $value;
+                    $query .= " AND type_1 = :type_1";
+                    break;
+                case 'caught':
+                    $params[":caught"] = $value;
+                    $query .= " AND caught = :caught";
                     break;
                 case 'id':
                     $params[":id"] = $value;
@@ -114,7 +146,7 @@ function _build_search_query(&$params, $search)
     }
 
     if (!has_role("Admin")) {
-        $query .= " AND status != 'unavailable'";
+        $query .= " AND caught != '0'";
     }
     // order by
     if (isset($search["column"]) && !empty($search["column"]) && isset($search["order"]) && !empty($search["order"])) {
@@ -136,12 +168,11 @@ function _build_search_query(&$params, $search)
     }
     // limit last
     $query .= " LIMIT 10";
-
-
     return $query;
 }
 /**
  * Dynamically binds parameters based on value data type
+ * Also put into pokemon_search.php
  */
 function bind_params($stmt, $params)
 {

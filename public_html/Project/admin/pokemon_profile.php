@@ -1,5 +1,6 @@
 <?php
-//note we need to go up 1 more directory
+//iar3 12/02/2001 This code looks for Pokemon, and sets
+//some variables for data creation.
 require(__DIR__ . "/../../../partials/nav.php");
 
 if (!has_role("Admin")) {
@@ -9,6 +10,7 @@ if (!has_role("Admin")) {
 }
 
 $pokemon = [];
+$pokemonTypes = ["None", "Normal", "Fire", "Water", "Electric", "Grass", "Ice", "Fighting", "Poison", "Ground", "Flying", "Psychic", "Bug", "Rock", "Ghost", "Dark", "Steel", "Dragon", "Fairy"];
 $statuses = ["Caught", "Not Caught"];
 $statuses = array_map(function ($v) {
     return ["label" => $v, "value" => strtolower($v)];
@@ -35,14 +37,14 @@ if (count($_POST) > 0) {
     }
     if ($mons_id > 0) {
         flash("Successfully set profile for " . $mons["name"], "success");
-        redirect("admin/pokemon_profile.php?id=$mons_id");
+        redirect("pokemon_profile.php?id=$mons_id");
     }
 }
 
 if ($id > 0) {
     $db = getDB();
     // query happens here
-    $query = "SELECT name, type_1, type_2 FROM CA_Pokemon";
+    $query = "SELECT name, type_1, type_2 FROM CA_Pokemon as CC WHERE id = :id";
     $stmt = $db->prepare($query);
     try {
         $stmt->execute([":id" => $id]);
@@ -58,11 +60,15 @@ if ($id > 0) {
         flash("An unhandled error occurred", "danger");
     }
 }
-?>
-<div class="container-fluid>">
+$data = $_GET;
+unset($data["id"]);
+$back = "admin/list_pokemon.php?" . http_build_query($data);
+?><div class="container-fluid>">
     <h1>Pokemon Profile</h1>
     <form method="POST">
         <?php render_input(["type" => "text", "id" => "name", "name" => "name", "label" => "Name", "rules" => ["minlength" => 2, "required" => true], "value" => se($mons, "name", "", false)]) ?>
+        <?php render_input(["type" => "select", "id" => "type_1", "name" => "type_1", "label" => "Type", "rules" => ["required" => true], "options" => array_combine($pokemonTypes, $pokemonTypes), "value" => se($mons, "type_1", "Unknown", false)]); ?>
+        <?php render_input(["type" => "select", "id" => "type_2", "name" => "type_2", "label" => " 2nd Type", "rules" => ["required" => false], "options" => array_combine($pokemonTypes, $pokemonTypes), "value" => se($mons, "type_2", "", false)]); ?> 
         <?php render_button(["text" => "Save", "type" => "submit"]); ?>
     </form>
 </div>

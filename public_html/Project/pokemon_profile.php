@@ -1,4 +1,4 @@
-<?php /* Note this file is different than admin/cat_profile.php*/ ?>
+<?php /* Note this file is different than admin/pokemon_profile.php*/ ?>
 <?php
 require(__DIR__ . "/../../partials/nav.php");
 $id = se($_GET, "id", -1, false);
@@ -8,14 +8,13 @@ if ($id <= 0) {
     error_log("redirecting to " . var_export($url, true));
     redirect(get_url($url));
 }
-$_GET["image_limit"] = 10;
 $mons = search_mons();
 $mons = $mons[0];
 $pokemon_id = se($mons, "id", 0, false);
 $mon = [];
 if ($pokemon_id != 0) {
     $mon = get_pokemon_by_id($pokemon_id);
-    error_log("Mon: " . var_export($mon, true));
+    error_log("Pokemon: " . var_export($mon, true));
 }
 ?>
 <div class="container-fluid">
@@ -23,7 +22,7 @@ if ($pokemon_id != 0) {
     <h1>Current Pokemon</h1>
     <div class="card">
         <div class="card-header text-center">
-            <?php se($mons); ?>
+            <?php se($mons, "caught"); ?>
         </div>
         <div class="card-body">
             <div class="row">
@@ -34,26 +33,68 @@ if ($pokemon_id != 0) {
             <div class="row">
                 <div class="col">
                     <div class="row">
+                    <?php /* handle image*/
+                        $urls = isset($mons["urls"]) ? $mons["urls"] : "";
+                        error_log("urls data: " . var_export($urls, true));
+                        $urls = explode(",", $urls);
+                        error_log("urls data after explode:" . var_export($urls, true));
+                        ?>
                         <?php foreach ($urls as $url) : ?>
                             <div class="col">
-                                <img class="p-3" style="width: 100%; aspect-ratio: 1; object-fit: scale-down; max-height: 256px;" src="<?php se($url, null, get_url("images/missingNo.png")); ?>" />
+                                <img class="p-3" style="width: 100%; aspect-ratio: 1; object-fit: scale-down; max-height: 256px;" src="images/missingNo.png"; ?>
                             </div>
                         <?php endforeach; ?>
                     </div>
                 </div>
                 <div class="col">
                     <div><strong>About:</strong><br>
-                        <?php se($mons, "description"); ?>
+                        <p>
+                            <?php se($mons, "name")?> is a <?php se($mons,"type_1")?>
+                        <?php
+                            if ($mons["type_2"] === "None" || $mons["type_2"] === "")
+                            {
+                                ;
+                            }
+                            else {
+                                echo "and " . $mons["type_2"];
+                            }
+                        ?>
+                        type pokemon from
+                            <?php
+                                if ($mons["id"] < 152) {
+                                    echo "the Kanto";
+                                }
+                                elseif ($mons["id"] < 252) {
+                                    echo "the Johto";
+                                }
+                                elseif ($mons["id"] < 387) {
+                                    echo "the Hoenn";
+                                }
+                                elseif ($mons["id"] < 494) {
+                                    echo "the Sinnoh";
+                                }
+                                elseif ($mons["id"] < 650) {
+                                    echo "the Unova";
+                                }
+                                elseif ($mons["id"] < 722) {
+                                    echo "the Kalos";
+                                }
+                                elseif ($mons["id"] < 810) {
+                                    echo "the Alola";
+                                }
+                                elseif ($mons["id"] < 906) {
+                                    echo "the Galar";
+                                }
+                                elseif ($mons["id"] < 1009) {
+                                    echo "the Paldea";
+                                }
+                                else {
+                                    echo "an unknown";
+                                }
+                            ?>
+                            region.
+                        </p>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <h5>Info</h5>
-                    <div><strong>Type 1: </strong><?php se($mons, "type_1"); ?></div>
-                    <div><strong>Type 2: </strong><?php se($mons, "type_2"); ?></div>
-                </div>
-                <div class="col">
                 </div>
             </div>
         </div>
