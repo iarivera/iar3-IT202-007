@@ -69,40 +69,6 @@ function get_pokemon_by_id($id)
     return [];
 }
 
-function search_mons() //put in new pokemon_search.php file 
-{
-    // Initialize variables
-    global $search; //make search available outside of this function
-    $search = $_GET;
-    $mons = [];
-    $params = [];
-
-    // Build the SQL query
-    $query = _build_search_query($params, $search);
-
-    // Prepare the SQL statement
-    $db = getDB();
-    $stmt = $db->prepare($query);
-
-    // Bind parameters to the SQL statement
-    bind_params($stmt, $params);
-    error_log("search query: " . var_export($query, true));
-    error_log("params: " . var_export($params, true));
-    // Execute the SQL statement and fetch results
-    try {
-        $stmt->execute();
-        $result = $stmt->fetchAll();
-        if ($result) {
-            $mons = $result;
-        }
-    } catch (PDOException $e) {
-        flash("An error occurred while searching for Pokemon: " . $e->getMessage(), "warning");
-        error_log("Pokemon Search Error: " . var_export($e, true));
-    }
-
-    return $mons;
-}
-
 //Make get_potential_total_records($query, $params),
 //_build_where_clause(&$query, &$params, $search)
 
