@@ -25,7 +25,9 @@ $pokemon = search_mons();
                 </div>
             <?php endif; ?>
         </div>
-        /*Include pagination file here, will make file after finishing milestone2*/
+        <div class="row">
+            <?php include(__DIR__ . "/../../partials/pagination_nav.php"); ?>
+        </div>
     </div>
 </div>
 <?php
