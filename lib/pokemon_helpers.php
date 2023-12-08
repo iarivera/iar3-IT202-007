@@ -47,11 +47,6 @@ function validate_mons($mons) {
     if($type1 === 0) {
         $has_error = false;
     }
-    $type2 = (int)se($mons, "type_2", 0, false);
-    if($type2 === 0) {
-        $has_error = false;
-    }
-
     return !$has_error;
 }
 

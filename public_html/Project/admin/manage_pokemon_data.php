@@ -1,7 +1,6 @@
 <?php
 // note we need to go up 1 more directory
 require(__DIR__ . "/../../../partials/nav.php");
-
 if (!has_role("Admin")) {
     flash("You don't have permission to view this page", "warning");
     die(header("Location: " . get_url("home.php")));
@@ -9,7 +8,8 @@ if (!has_role("Admin")) {
 //TODO need to update insert_pokemon... to use the $mappings array and not go based on is_int for value
 function insert_pokemon_into_db($db, $pokemon, $mappings)
 {
-    // Prepare SQL query
+    // iar3 11/27/2023 This part of the file is the query and all the goes into putting 
+    // the information into the db, as well as how it is processed
     $query = "INSERT INTO `CA_Pokemon` ";
     if (count($pokemon) > 0) {
         $cols = array_keys($pokemon[0]);
@@ -30,15 +30,12 @@ function insert_pokemon_into_db($db, $pokemon, $mappings)
 
         // iar3 12/02/2001 this code checks if any duplicate items will be pulled
         // and only leaves old data alone
-        // Generate the ON DUPLICATE KEY UPDATE clause
         $updates = array_reduce($cols, function ($carry, $col) {
             $carry[] = "`$col` = VALUES(`$col`)";
             return $carry;
         }, []);
 
         $query .= " ON DUPLICATE KEY UPDATE " . implode(",", $updates);
-
-        // Prepare the statement
         $stmt = $db->prepare($query);
 
         // Bind the parameters for each mon
@@ -54,12 +51,10 @@ function insert_pokemon_into_db($db, $pokemon, $mappings)
             }
         }
 
-        // Execute the statement
         try {
-            $stmt->execute();
-        } catch (PDOException $e) {
-            error_log(var_export($e, true));
-        }
+            $stmt->execute();} 
+        catch (PDOException $e) {
+            error_log(var_export($e, true));}
     }
 }
 
@@ -77,19 +72,16 @@ function process_single_mon($mon, $columns, $mappings)
     $record["type_2"] = $type[1];
     
 
-    // Map mon data to columns
     foreach ($columns as $column) {
         if(in_array($column, ["id", "api_id"])){
-            continue;
-        }
+            continue;}
         error_log("$mon type: " . gettype($mon) . ", Content: " . var_export($mon, true));
         error_log("$column type: " . gettype($column) . ", Content: " . var_export($column, true));
         if(array_key_exists($column, $mon)){
             $record[$column] = $mon[$column];
             if(empty($record[$column])){
                 if(str_contains($mappings[$column], "int")){
-                    $record[$column] = "0";
-                }
+                    $record[$column] = "0";}
             }
         }
     }
@@ -134,8 +126,9 @@ function process_pokemon($result)
         $record = process_single_mon($mon, $columns, $mappings);
         array_push($pokemon, $record);
     }
-
-    // Insert pokemon into database
+    // iar3 11/27/2023 This part of the file processes all of the Pokemon and calls the functions to
+    // process individual Pokemon and insert them into CA_Pokemon, the db. It also contains the button
+    // to call every function.
     insert_pokemon_into_db($db, $pokemon, $mappings);
 }
 
