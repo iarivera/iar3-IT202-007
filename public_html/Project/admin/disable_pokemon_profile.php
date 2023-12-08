@@ -1,6 +1,8 @@
 <?php
-// this file is part of an example of how we can persist query params
-//note we need to go up 1 more directory
+// iar3 This file is an early of marking pokemon as caught
+// it uses the library functions, and checks if the id of
+// a Pokemon is valid. If it is, it sets its status as
+// Caught, otherwise an error is returned.
 require(__DIR__ . "/../../../lib/functions.php");
 // don't forget to start the session if you need it since this is done in nav.php and not functions.php
 if (session_status() != PHP_SESSION_ACTIVE) {
