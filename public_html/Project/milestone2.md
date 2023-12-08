@@ -1,6 +1,6 @@
 <table><tr><td> <em>Assignment: </em> IT202 Milestone 2 API Project</td></tr>
 <tr><td> <em>Student: </em> Ivan Rivera (iar3)</td></tr>
-<tr><td> <em>Generated: </em> 12/7/2023 9:10:35 PM</td></tr>
+<tr><td> <em>Generated: </em> 12/8/2023 2:16:38 PM</td></tr>
 <tr><td> <em>Grading Link: </em> <a rel="noreferrer noopener" href="https://learn.ethereallab.app/homework/IT202-007-F23/it202-milestone-2-api-project/grade/iar3" target="_blank">Grading</a></td></tr></table>
 <table><tr><td> <em>Instructions: </em> <ol><li>Checkout Milestone2 branch</li><li>Create a new markdown file called milestone2.md</li><li>git add/commit/push immediate</li><li>Fill in the below deliverables</li><li>At the end copy the markdown and paste it into milestone2.md</li><li>Add/commit/push the changes to Milestone2</li><li>PR Milestone2 to dev and verify</li><li>PR dev to prod and verify</li><li>Checkout dev locally and pull changes to get ready for Milestone 3</li><li>Submit the direct link to this new milestone2.md file from your GitHub prod branch to Canvas</li></ol><p>Note: Ensure all images appear properly on github and everywhere else. Images are only accepted from dev or prod, not local host. All website links must be from prod (you can assume/infer this by getting your dev URL and changing dev to prod).</p></td></tr></table>
 <table><tr><td> <em>Deliverable 1: </em> Define the appropriate table or tables for your API </td></tr><tr><td><em>Status: </em> <img width="100" height="20" src="https://user-images.githubusercontent.com/54863474/211707773-e6aef7cb-d5b2-4053-bbb1-b09fc609041e.png"></td></tr>
@@ -13,6 +13,7 @@
 <tr><td> <em>Response:</em> <p>Table CA_Pokemon has columns for id, api_id, name, type_1, optional type_2, whether a<br>Pokemon has been caught, a created timestamp and modified timestamp. &quot;api_id&quot; pulls the<br>Pokemon&#39;s corresponding id from the API. Name pulls in the corresponding Pokemon&#39;s name.&nbsp;<br>The type columns pull the Pokemon&#39;s corresponding types, type_1 must be filled, because<br>all Pokemon have at least 1 typing. Some Pokemon have a 2nd typing,<br>so type_2 accounts for that.<br><br></p><br></td></tr>
 <tr><td> <em>Sub-Task 3: </em> Add any related PRs for this task</td></tr>
 <tr><td> <a rel="noreferrer noopener" target="_blank" href="https://github.com/iarivera/iar3-IT202-007/pull/33">https://github.com/iarivera/iar3-IT202-007/pull/33</a> </td></tr>
+<tr><td> <a rel="noreferrer noopener" target="_blank" href="https://github.com/iarivera/iar3-IT202-007/pull/42">https://github.com/iarivera/iar3-IT202-007/pull/42</a> </td></tr>
 </table></td></tr>
 <table><tr><td> <em>Deliverable 2: </em> Data Creation Page </td></tr><tr><td><em>Status: </em> <img width="100" height="20" src="https://user-images.githubusercontent.com/54863474/211707773-e6aef7cb-d5b2-4053-bbb1-b09fc609041e.png"></td></tr>
 <tr><td><table><tr><td> <em>Sub-Task 1: </em> Screenshots of the Page and the Code (at least two)</td></tr>
@@ -40,6 +41,7 @@
 <tr><td> <a rel="noreferrer noopener" target="_blank" href="https://iar3-prod-8afd25d0af9e.herokuapp.com/Project/admin/pokemon_profile.php">https://iar3-prod-8afd25d0af9e.herokuapp.com/Project/admin/pokemon_profile.php</a> </td></tr>
 <tr><td> <em>Sub-Task 5: </em> Add any related PRs for this task</td></tr>
 <tr><td> <a rel="noreferrer noopener" target="_blank" href="https://github.com/iarivera/iar3-IT202-007/pull/34">https://github.com/iarivera/iar3-IT202-007/pull/34</a> </td></tr>
+<tr><td> <a rel="noreferrer noopener" target="_blank" href="https://github.com/iarivera/iar3-IT202-007/pull/42">https://github.com/iarivera/iar3-IT202-007/pull/42</a> </td></tr>
 </table></td></tr>
 <table><tr><td> <em>Deliverable 3: </em> Data List Page </td></tr><tr><td><em>Status: </em> <img width="100" height="20" src="https://user-images.githubusercontent.com/54863474/211707773-e6aef7cb-d5b2-4053-bbb1-b09fc609041e.png"></td></tr>
 <tr><td><table><tr><td> <em>Sub-Task 1: </em> Screenshot the list page and code</td></tr>
@@ -59,6 +61,7 @@
 <tr><td> <a rel="noreferrer noopener" target="_blank" href="https://iar3-prod-8afd25d0af9e.herokuapp.com/Project/admin/list_pokemon.php">https://iar3-prod-8afd25d0af9e.herokuapp.com/Project/admin/list_pokemon.php</a> </td></tr>
 <tr><td> <em>Sub-Task 4: </em> Add any related PRs for this task</td></tr>
 <tr><td> <a rel="noreferrer noopener" target="_blank" href="https://github.com/iarivera/iar3-IT202-007/pull/35">https://github.com/iarivera/iar3-IT202-007/pull/35</a> </td></tr>
+<tr><td> <a rel="noreferrer noopener" target="_blank" href="https://github.com/iarivera/iar3-IT202-007/pull/42">https://github.com/iarivera/iar3-IT202-007/pull/42</a> </td></tr>
 </table></td></tr>
 <table><tr><td> <em>Deliverable 4: </em> View Details Page </td></tr><tr><td><em>Status: </em> <img width="100" height="20" src="https://user-images.githubusercontent.com/54863474/211707773-e6aef7cb-d5b2-4053-bbb1-b09fc609041e.png"></td></tr>
 <tr><td><table><tr><td> <em>Sub-Task 1: </em> Screenshot of Page and related content/code</td></tr>
@@ -75,6 +78,7 @@
 <tr><td> <a rel="noreferrer noopener" target="_blank" href="https://iar3-prod-8afd25d0af9e.herokuapp.com/Project/browse.php?">https://iar3-prod-8afd25d0af9e.herokuapp.com/Project/browse.php?</a> </td></tr>
 <tr><td> <em>Sub-Task 4: </em> Add any related PRs for this task</td></tr>
 <tr><td> <a rel="noreferrer noopener" target="_blank" href="https://github.com/iarivera/iar3-IT202-007/pull/35">https://github.com/iarivera/iar3-IT202-007/pull/35</a> </td></tr>
+<tr><td> <a rel="noreferrer noopener" target="_blank" href="https://github.com/iarivera/iar3-IT202-007/pull/42">https://github.com/iarivera/iar3-IT202-007/pull/42</a> </td></tr>
 </table></td></tr>
 <table><tr><td> <em>Deliverable 5: </em> Edit Data Page </td></tr><tr><td><em>Status: </em> <img width="100" height="20" src="https://user-images.githubusercontent.com/54863474/211707773-e6aef7cb-d5b2-4053-bbb1-b09fc609041e.png"></td></tr>
 <tr><td><table><tr><td> <em>Sub-Task 1: </em> Screenshot of Page and related content/code</td></tr>
@@ -89,6 +93,7 @@
 <tr><td> <a rel="noreferrer noopener" target="_blank" href="https://iar3-prod-8afd25d0af9e.herokuapp.com/Project/admin/list_pokemon.php?name=Mi&type_1=psychic&caught=&order=">https://iar3-prod-8afd25d0af9e.herokuapp.com/Project/admin/list_pokemon.php?name=Mi&type_1=psychic&caught=&order=</a> </td></tr>
 <tr><td> <em>Sub-Task 3: </em> Add any related PRs for this task</td></tr>
 <tr><td> <a rel="noreferrer noopener" target="_blank" href="https://github.com/iarivera/iar3-IT202-007/pull/35">https://github.com/iarivera/iar3-IT202-007/pull/35</a> </td></tr>
+<tr><td> <a rel="noreferrer noopener" target="_blank" href="https://github.com/iarivera/iar3-IT202-007/pull/42">https://github.com/iarivera/iar3-IT202-007/pull/42</a> </td></tr>
 </table></td></tr>
 <table><tr><td> <em>Deliverable 6: </em> Delete Handling </td></tr><tr><td><em>Status: </em> <img width="100" height="20" src="https://user-images.githubusercontent.com/54863474/211707773-e6aef7cb-d5b2-4053-bbb1-b09fc609041e.png"></td></tr>
 <tr><td><table><tr><td> <em>Sub-Task 1: </em> Screenshots of related code/evidence</td></tr>
@@ -109,6 +114,7 @@
 <tr><td> <em>Response:</em> <p>Admins are the only role that can delete items. The deletion process is<br>a soft delete, in that it marks the Pokemon as caught. In Milestone<br>3, I plan to associate which user was the first to catch any<br>specific Pokemon. With a Pokemon being marked as caught, it can appear when<br>not looking for any particular filters, but when filtering by whether if a<br>Pokemon was not caught, it will no longer appear in those results.<br><br></p><br></td></tr>
 <tr><td> <em>Sub-Task 3: </em> Add any related PRs for this task</td></tr>
 <tr><td> <a rel="noreferrer noopener" target="_blank" href="https://github.com/iarivera/iar3-IT202-007/pull/35">https://github.com/iarivera/iar3-IT202-007/pull/35</a> </td></tr>
+<tr><td> <a rel="noreferrer noopener" target="_blank" href="https://github.com/iarivera/iar3-IT202-007/pull/42">https://github.com/iarivera/iar3-IT202-007/pull/42</a> </td></tr>
 </table></td></tr>
 <table><tr><td> <em>Deliverable 7: </em> API Handling </td></tr><tr><td><em>Status: </em> <img width="100" height="20" src="https://user-images.githubusercontent.com/54863474/211707773-e6aef7cb-d5b2-4053-bbb1-b09fc609041e.png"></td></tr>
 <tr><td><table><tr><td> <em>Sub-Task 1: </em> Screenshots of Code</td></tr>
@@ -126,6 +132,7 @@
 <tr><td> <em>Response:</em> <p>The API data starts by processing the Pokemon&#39;s type(s). The mapping uses column<br>names from the API, which are set to the columns on the database.<br>The API call is triggered with a get request, and then pulls the<br>data. My goal with the API data is to have each Pokemon display<br>so users can say which Pokemon they have caught, which will be implemented<br>in Milestone 3.<br><br></p><br></td></tr>
 <tr><td> <em>Sub-Task 3: </em> Add any related PRs for this task</td></tr>
 <tr><td> <a rel="noreferrer noopener" target="_blank" href="https://github.com/iarivera/iar3-IT202-007/pull/33">https://github.com/iarivera/iar3-IT202-007/pull/33</a> </td></tr>
+<tr><td> <a rel="noreferrer noopener" target="_blank" href="https://github.com/iarivera/iar3-IT202-007/pull/42">https://github.com/iarivera/iar3-IT202-007/pull/42</a> </td></tr>
 </table></td></tr>
 <table><tr><td> <em>Deliverable 8: </em> Misc </td></tr><tr><td><em>Status: </em> <img width="100" height="20" src="https://user-images.githubusercontent.com/54863474/211707773-e6aef7cb-d5b2-4053-bbb1-b09fc609041e.png"></td></tr>
 <tr><td><table><tr><td> <em>Sub-Task 1: </em> What issues did you face and overcome during this milestone?</td></tr>
