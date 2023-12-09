@@ -1,1 +1,1 @@
-ALTER TABLE Pokemon_Cats ADD COLUMN previous_status VARCHAR(20);
+ALTER TABLE CA_Pokemon ADD COLUMN previous_status VARCHAR(20);

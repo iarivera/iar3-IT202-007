@@ -1,5 +1,5 @@
 CREATE TABLE CA_Intents(
-    `id`    int auto_increment not null,
+    `id`    int auto_increment not null PRIMARY key,
     `pokemon_id` INT,
     `requestor_id` int,
     `processor_id` int,
