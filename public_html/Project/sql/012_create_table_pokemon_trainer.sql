@@ -1,4 +1,4 @@
-CREATE TABLE CA_Pokemon_Catcher(
+CREATE TABLE CA_Pokemon_Trainer(
     `id` int auto_increment not null PRIMARY key,
     `pokemon_id` int,
     `owner_id` int,
