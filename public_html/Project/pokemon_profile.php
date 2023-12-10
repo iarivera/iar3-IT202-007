@@ -116,8 +116,7 @@ if ($pokemon_id != 0) {
         </div>
         <div class="card-footer">
             <div class="row">
-                <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#actionModal" data-bs-action="caught">Mark as Caught</button>
-                <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#actionModal" data-bs-action="seen">Mark as Seen</button>
+                <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#actionModal" data-bs-action="Caught">Mark as Caught</button>
             </div>
         </div>
     </div>
