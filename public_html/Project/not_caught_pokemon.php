@@ -1,29 +1,24 @@
 <?php
-require(__DIR__ . "/../../partials/nav.php");
+require_once(__DIR__ . "/../../partials/nav.php");
 
-// remove single view filter
-if (isset($_GET["id"])) {
-    unset($_GET["id"]);
-}
-$pokemon = search_mons();
+$search["status"] = "Not Caught";
+$search["column"] = "modified";
+$search["order"] = "desc";
+$mons = search_mons();
+
 ?>
 <div class="container-fluid">
-    <h4>Pokemon</h4>
+    <h4>Uncaught Pokemon</h4>
     <div class="container mx-auto">
-        <div>
-            <?php include(__DIR__ . "/../../partials/search_form.php"); ?>
-        </div>
-        <?php $results = $pokemon;
-        include(__DIR__ . "/../../partials/result_metrics.php"); ?>
         <div class="row justify-content-center">
-            <?php foreach ($pokemon as $mon) : ?>
+            <?php foreach ($mons as $mon) : ?>
                 <div class="col">
                     <?php render_pokemon_list_item($mon); ?>
                 </div>
             <?php endforeach; ?>
-            <?php if (count($pokemon) === 0) : ?>
+            <?php if (count($mons) === 0) : ?>
                 <div class="col-12">
-                    No Pokemon found
+                    All Pokemon have been caught!
                 </div>
             <?php endif; ?>
         </div>
@@ -35,4 +30,3 @@ $pokemon = search_mons();
 <?php
 require_once(__DIR__ . "/../../partials/footer.php");
 ?>
-

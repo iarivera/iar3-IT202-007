@@ -3,7 +3,11 @@ function search_mons() //put in new pokemon_search.php file
 {
     // Initialize variables
     global $search; //make search available outside of this function
-    $search = $_GET;
+    if (isset($search) && !empty($search)) {
+        $search = array_merge($search, $_GET);
+    } else {
+        $search = $_GET;
+    }
     $mons = [];
     $params = [];
 
@@ -81,9 +85,18 @@ function _build_where_clause(&$query, &$params, $search)
                     $params[":id"] = $value;
                     $query .= " AND c.id = :id";
                     break;
+                case "owner_id":
+                    $params[":owner_id"] = $value;
+                    $query .= " AND c.id IN (SELECT pokemon_id FROM CA_Pokemon_Trainer WHERE owner_id = :owner_id)";
+                    break;
             }
         }
     }
+
+    if (!has_role("Admin")) {
+        $query .= " AND status != 'unavailable'";
+    }
+
     // order by
     if (isset($search["column"]) && !empty($search["column"]) && isset($search["order"]) && !empty($search["order"])) {
         global $VALID_ORDER_COLUMNS;
@@ -116,8 +129,13 @@ function _build_search_query(&$params, $search)
             WHEN c.caught = 'Not Caught' THEN 'Not Caught'
             WHEN c.caught = 'Caught' THEN 'Caught'
             ELSE 'N/A'
-        END as caught
+        END as caught,
+        co.owner_id as owner_id,
+        u.username as username,
+        c.modified as last_updated
         FROM CA_Pokemon c
+        LEFT JOIN CA_Pokemon_Trainer co on co.pokemon_id = c.id
+        LEFT JOIN Users u on co.owner_id = u.id
         WHERE 1=1";
     $total_query = "SELECT count(1) as total FROM CA_Pokemon WHERE 1=1";
     _build_where_clause($filter_query, $params, $search);
