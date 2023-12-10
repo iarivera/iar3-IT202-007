@@ -1,7 +1,7 @@
 <?php
 require_once(__DIR__ . "/../../partials/nav.php");
 
-$search["caught"] = "Not Caught";
+$search["status"] = "Not Caught";
 $search["column"] = "modified";
 $search["order"] = "desc";
 $mons = search_mons();
