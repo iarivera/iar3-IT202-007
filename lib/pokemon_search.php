@@ -89,9 +89,6 @@ function _build_where_clause(&$query, &$params, $search)
                     $params[":owner_id"] = $value;
                     $query .= " AND c.id IN (SELECT pokemon_id FROM CA_Pokemon_Trainer WHERE owner_id = :owner_id)";
                     break;
-                case "new":
-                    $query .= " AND NOT EXISTS (SELECT pokemon_id FROM CA_Pokemon_Trainer WHERE pokemon_id = c.id)";
-                    break;
             }
         }
     }
