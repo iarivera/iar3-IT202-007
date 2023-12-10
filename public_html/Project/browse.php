@@ -13,6 +13,8 @@ $pokemon = search_mons();
         <div>
             <?php include(__DIR__ . "/../../partials/search_form.php"); ?>
         </div>
+        <?php $results = $pokemon;
+        include(__DIR__ . "/../../partials/result_metrics.php"); ?>
         <div class="row justify-content-center">
             <?php foreach ($pokemon as $mon) : ?>
                 <div class="col">

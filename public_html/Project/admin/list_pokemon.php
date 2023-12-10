@@ -16,6 +16,9 @@ $table = ["data" => $mons, "delete_url" => "disable_pokemon_profile.php", "view_
     <div>
         <?php include(__DIR__ . "/../../../partials/search_form.php"); ?>
     </div>
+    <?php $results = $mons;
+    include(__DIR__ . "/../../../partials/result_metrics.php"); ?>
+    <div>
     <div>
         <?php render_table($table); ?>
     </div>
