@@ -40,20 +40,11 @@ session_start();
         <ul>
         <?php if (is_logged_in()) : ?>
             <li><a href="<?php echo get_url('home.php'); ?>">Home</a></li>
-            <li><a href="<?php echo get_url('profile.php'); ?>">Profile</a></li>
             <li><a href="<?php echo get_url('pokemon_profile.php'); ?>">Pokemon Profiles</a></li>
         <?php endif; ?>
         <?php if (!is_logged_in()) : ?>
             <li><a href="<?php echo get_url('login.php'); ?>">Login</a></li>
             <li><a href="<?php echo get_url('register.php'); ?>">Register</a></li>
-        <?php endif; ?>
-        <?php if (has_role("Admin")) : ?>
-            <li><a href="<?php echo get_url('admin/create_role.php'); ?>">Create Role</a></li>
-            <li><a href="<?php echo get_url('admin/list_roles.php'); ?>">List Roles</a></li>
-            <li><a href="<?php echo get_url('admin/assign_roles.php'); ?>">Assign Roles</a></li>
-            <li><a href="<?php echo get_url('admin/manage_pokemon_data.php'); ?>">Manage Pokemon</a></li>
-            <li><a href="<?php echo get_url('admin/list_pokemon.php'); ?>">List Pokemon</a></li>
-            <li><a href="<?php echo get_url('admin/pokemon_profile.php'); ?>">Pokemon Profiles</a></li>
         <?php endif; ?>
         <?php if (is_logged_in()) : ?>
             <li><a href="<?php echo get_url('logout.php'); ?>">Logout</a></li>
@@ -61,9 +52,15 @@ session_start();
     </ul>
 </nav><div class="collapse navbar-collapse" id="navContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link" href="<?php echo get_url('browse.php'); ?>">Browse</a></li>
-                <li class="nav-item"><a class="nav-link" href="<?php echo get_url('not_caught_pokemon.php'); ?>">Uncaught Pokemon</a></li>
-                <li class="nav-item"><a class="nav-link" href="<?php echo get_url('recently_caught.php'); ?>">Recently Caught</a></li>
+            <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="myDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Pokemon Info
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="myDropdown">
+                            <li class="nav-item"><a class="nav-link" href="<?php echo get_url('browse.php'); ?>">Browse</a></li>
+                            <li class="nav-item"><a class="nav-link" href="<?php echo get_url('not_caught_pokemon.php'); ?>">Uncaught Pokemon</a></li>
+                            <li class="nav-item"><a class="nav-link" href="<?php echo get_url('recently_caught.php'); ?>">Recently Caught</a></li>
+                        </ul>
                 <?php if (is_logged_in()) : ?>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="myDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -96,7 +93,7 @@ session_start();
                             Pokedex Management
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="mDropdown">
-                            <li><a class="dropdown-item" href="<?php echo get_url('admin/manage_pokemon_data.php'); ?>">Manage Cats</a></li>
+                            <li><a class="dropdown-item" href="<?php echo get_url('admin/manage_pokemon_data.php'); ?>">Manage Pokemon</a></li>
                             <li><a class="dropdown-item" href="<?php echo get_url('admin/requests.php'); ?>">Requests</a></li>
                         </ul>
                     </li>

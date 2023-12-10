@@ -1,12 +1,9 @@
 <?php if (isset($data)) : error_log("Pokemon data: " . var_export($data, true)); ?>
     <div class="card" style="width:15em">
-    <div class="card-header">
-            <?php se($data, "status", "N/A"); ?>
             <?php if (se($data, "username", "", false)) : ?> by
                 <a href="<?php get_url("profile.php?id=", true);
                             se($data, "owner_id"); ?>"><?php se($data, "username"); ?></a> - <?php se($data, "last_updated"); ?>
-            <?php endif; ?>
-        </div>    
+            <?php endif; ?>    
         <img class="p-3" style="width: 100%; aspect-ratio: 1; object-fit: scale-down; max-height: 256px;" src="images/missingNo.png"; ?>
         <div class="card-body">
             <h5 class="card-title"><?php se($data, "label"); ?></h5>

@@ -36,7 +36,8 @@ require(__DIR__ . "/update_data.php");
 // Redirect
 require(__DIR__ . "/redirect.php");
 
-// Pokemon Helper Functions
+// Helper Functions
 require(__DIR__ . "/pokemon_helpers.php");
 require(__DIR__ . "/pokemon_search.php");
+require(__DIR__ . "/intent_helpers.php");
 ?>

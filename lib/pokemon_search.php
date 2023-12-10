@@ -115,7 +115,6 @@ function _build_where_clause(&$query, &$params, $search)
         }
         $query .= " ORDER BY $col $order"; //<-- be absolutely sure you trust these values; we can't bind certain parts of the query due to how the parameter mapping works
     }
-    $query .= " ORDER BY $col $order";
 }
 
 function _build_search_query(&$params, $search)
