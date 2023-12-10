@@ -31,7 +31,7 @@ session_start();
 <!-- include css and js files -->
 <link rel="stylesheet" href="<?php echo get_url('styles.css'); ?>">
 <script src="<?php echo get_url('helpers.js'); ?>"></script>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-light bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="<?php echo get_url('home.php'); ?>">Community Pokedex</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent" aria-controls="navContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -83,9 +83,9 @@ session_start();
                             Roles
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="rolesDropdown">
-                            <li><a class="dropdown-item" href="<?php echo get_url('admin/create_role.php'); ?>">Create</a></li>
-                            <li><a class="dropdown-item" href="<?php echo get_url('admin/list_roles.php'); ?>">List</a></li>
-                            <li><a class="dropdown-item" href="<?php echo get_url('admin/assign_roles.php'); ?>">Assign</a></li>
+                            <li><a class="dropdown-item" href="<?php echo get_url('admin/create_role.php'); ?>">Create Roles</a></li>
+                            <li><a class="dropdown-item" href="<?php echo get_url('admin/list_roles.php'); ?>">List Roles</a></li>
+                            <li><a class="dropdown-item" href="<?php echo get_url('admin/assign_roles.php'); ?>">Assign Roles</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -94,12 +94,10 @@ session_start();
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="mDropdown">
                             <li><a class="dropdown-item" href="<?php echo get_url('admin/manage_pokemon_data.php'); ?>">Manage Pokemon</a></li>
+                            <li><a class="dropdown-item" href="<?php echo get_url('admin/list_pokemon.php'); ?>">List Pokemon</a></li>
                             <li><a class="dropdown-item" href="<?php echo get_url('admin/requests.php'); ?>">Requests</a></li>
                         </ul>
                     </li>
-                <?php endif; ?>
-                <?php if (is_logged_in()) : ?>
-                    <li class="nav-item"><a class="nav-link" href="<?php echo get_url('logout.php'); ?>">Logout</a></li>
                 <?php endif; ?>
             </ul>
         </div>

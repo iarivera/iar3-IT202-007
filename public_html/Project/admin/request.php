@@ -74,12 +74,12 @@ if (count($_POST) > 0) {
                 if (!$has_error) {
                     //update the pokemon
                     $intent_type = se($_POST, "intent_type", "unavailable", false);
-                    if ($intent_type == "caught") {
-                        $intent_type = "caught";
-                    } else if ($intent_type == "seen") {
-                        $intent_type = "not caught";
-                    } else if ($intent_type == "not caught") {
-                        $intent_type = "not caught";
+                    if ($intent_type == "Caught") {
+                        $intent_type = "Caught";
+                    } else if ($intent_type == "Seen") {
+                        $intent_type = "Not Caught";
+                    } else if ($intent_type == "Not Caught") {
+                        $intent_type = "Not Caught";
                     }
                     $query = "UPDATE CA_Pokemon set previous_status = status, status = :status WHERE id = :cid";
                     $stmt = $db->prepare($query);
