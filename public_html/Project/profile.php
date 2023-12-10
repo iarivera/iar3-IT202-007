@@ -126,14 +126,14 @@ $username = get_username();
             </div>
             <div class="card-body">
                 <div class="row justify-content-center">
-                    <?php foreach ($cats as $cat) : ?>
+                    <?php foreach ($mons as $mon) : ?>
                         <div class="col">
-                            <?php render_pokemon_list_item($mons); ?>
+                            <?php render_pokemon_list_item($mon); ?>
                         </div>
                     <?php endforeach; ?>
-                    <?php if (count($cats) === 0) : ?>
+                    <?php if (count($mons) === 0) : ?>
                         <div class="col-12">
-                            No owned cats
+                            No caught Pokemon
                         </div>
                     <?php endif; ?>
                 </div>
