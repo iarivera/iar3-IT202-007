@@ -5,7 +5,7 @@ if (!isset($total)) {
     $total = 1;
 }
 
-$per_page = se($_GET, "limit", "10", false);
+$per_page = se($_GET, "limit", "50", false);
 $page = se($_GET, "page", 1, false);
 $total_pages = ceil($total / $per_page);
 //updates or inserts page into query string while persisting anything already present
