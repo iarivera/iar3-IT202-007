@@ -77,7 +77,7 @@ LEFT JOIN
     $intent_status = strtolower(se($action_status, "intent_status", "", false));
     $intent_type = strtolower(se($action_status, "intent_type", "", false));
     $mon_status = strtolower(se($action_status, "pokemon_caught", "", false));
-    $catch_rules = ["Caught", "Not Caught"];
+    $catch_rules = ["Catch", "Not Caught"];
     $seen_rules = ["Not Caught"];
     $intent_rules = ["", "approved", "rejected"];
     if (!in_array($intent_status, $intent_rules)) {
