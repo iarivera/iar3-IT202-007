@@ -6,7 +6,7 @@
             <?php endif; ?>    
         <img class="p-3" style="width: 100%; aspect-ratio: 1; object-fit: scale-down; max-height: 256px;" src="images/missingNo.png"; ?>
         <div class="card-body">
-            <h5 class="card-title"><?php se($data, "label"); ?></h5>
+            <h5 class="card-title"><?php se($data, "label", ""); ?></h5>
             <p class="card-text">
                 <br>
             </p>

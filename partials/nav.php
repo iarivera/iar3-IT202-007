@@ -57,7 +57,7 @@ session_start();
                             Pokemon Info
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="myDropdown">
-                            <li class="nav-item"><a class="nav-link" href="<?php echo get_url('browse.php'); ?>">Browse</a></li>
+                            <li class="nav-item"><a class="nav-link" href="<?php echo get_url('browse.php'); ?>">Browse Pokemon</a></li>
                             <li class="nav-item"><a class="nav-link" href="<?php echo get_url('not_caught_pokemon.php'); ?>">Uncaught Pokemon</a></li>
                             <li class="nav-item"><a class="nav-link" href="<?php echo get_url('recently_caught.php'); ?>">Recently Caught</a></li>
                         </ul>

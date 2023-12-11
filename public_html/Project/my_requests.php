@@ -4,6 +4,7 @@ is_logged_in(true); //login guard
 $user_id = get_user_id();
 
 $intents = search_intents(requestor_id: $user_id);
+$headers = [];
 if (count($intents) > 0) {
     $headers = array_keys($intents[0]);
     $headers = array_map(function ($v) {
