@@ -77,7 +77,7 @@ LEFT JOIN
     $intent_status = strtolower(se($action_status, "intent_status", "", false));
     $intent_type = strtolower(se($action_status, "intent_type", "", false));
     $mon_status = strtolower(se($action_status, "pokemon_caught", "", false));
-    $catch_rules = ["Catch", "Not Caught"];
+    $catch_rules = ["Caught", "Not Caught"];
     $seen_rules = ["Not Caught"];
     $intent_rules = ["", "approved", "rejected"];
     if (!in_array($intent_status, $intent_rules)) {
@@ -116,7 +116,7 @@ LEFT JOIN
         $db->rollBack(); //rollback any changes
     }
     if ($intent_id > 0) {
-        $query = "UPDATE CA_Pokemon set previous_status = status, status = 'pending process' WHERE id = :cid";
+        $query = "UPDATE CA_Pokemon set previous_status = caught, caught = 'pending process' WHERE id = :cid";
         $stmt = $db->prepare($query);
         try {
             $stmt->execute([":cid" => $mon_id]);
