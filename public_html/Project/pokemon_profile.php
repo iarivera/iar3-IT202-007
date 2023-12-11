@@ -34,7 +34,15 @@ if ($pokemon_id != 0) {
     <h1>Current Pokemon</h1>
     <div class="card">
         <div class="card-header text-left">
-            <?php se($mons, "caught"); ?>
+            <?php 
+            if ($mons["caught"] === "Not Caught")
+            {
+                se($mons, "caught");
+            }
+            else {
+                echo $mons["caught"] . "by";
+            }
+            ?>
         </div>
         <div class="card-body">
             <div class="row">
