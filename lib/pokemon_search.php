@@ -136,7 +136,7 @@ function _build_search_query(&$params, $search)
         LEFT JOIN CA_Pokemon_Trainer co on co.pokemon_id = c.id
         LEFT JOIN Users u on co.owner_id = u.id
         WHERE 1=1";
-    $total_query = "SELECT count(1) as total FROM CA_Pokemon WHERE 1=1";
+    $total_query = "SELECT count(1) as total FROM CA_Pokemon as c WHERE 1=1";
     _build_where_clause($filter_query, $params, $search);
     // added pagination (need limit and page to be in $search)
     // produces a $total value for use in UI

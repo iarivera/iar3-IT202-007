@@ -11,7 +11,7 @@ if ($id <= 0) {
 if (count($_POST) > 0) {
     $action = se($_POST, "action", "", false);
     $requestor_notes = se($_POST, "details", "", false);
-    if (in_array($action, ["adopt", "foster"])) {
+    if (in_array($action, ["Catch", "Not Caught"])) {
         $intent_id = create_intent($id, get_user_id(), null, $action, $requestor_notes);
         if ($intent_id > 0) {
             flash("Your request has been submitted!", "success");
@@ -115,7 +115,7 @@ if ($pokemon_id != 0) {
         </div>
         <div class="card-footer">
             <div class="row">
-                <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#actionModal" data-bs-action="Caught">Mark as Caught</button>
+                <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#actionModal" data-bs-action="Catch">Mark as Caught</button>
             </div>
         </div>
     </div>
