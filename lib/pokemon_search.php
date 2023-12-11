@@ -143,7 +143,7 @@ function _build_search_query(&$params, $search)
 
     global $total;
     $total = (int)get_potential_total_records($total_query . $filter_query, $params);
-    $limit = (int)se($search, "limit", 50, false);
+    $limit = (int)se($search, "limit", 100, false);
     error_log("total record: $total");
     $page = (int)se($search, "page", "1", false);
     if ($limit > 0 && $limit <= 100 && $page > 0) {
