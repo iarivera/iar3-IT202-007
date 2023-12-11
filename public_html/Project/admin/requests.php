@@ -22,8 +22,7 @@ $table = ["data" => $intents, "header_override" => $headers, "view_url" => "requ
 <div class="container-fluid">
     <h4>My Requests</h4>
     <div>
-        <?php include(__DIR__ . "/../../../partials/intent_search_form.php");
-        ?>
+        <?php include(__DIR__ . "/../../../partials/intent_search_form.php"); ?>
     </div>
     <div>
         <?php render_table($table); ?>

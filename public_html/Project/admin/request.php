@@ -45,7 +45,7 @@ if (count($_POST) > 0) {
         $pokemon_id = (int)se($_POST, "pokemon_id", -1, false);
         $has_error = false;
         if ($pokemon_id < 1) {
-            error_log("Invalid Pokemon id");
+            error_log("Invalid pokemon id");
             flash("Invalid Pokemon id", "danger");
             $has_error = true;
         }
@@ -68,7 +68,7 @@ if (count($_POST) > 0) {
                 } catch (PDOException $e) {
                     $db->rollBack(); //rollback
                     error_log("Error creating or updating Pokemon Trainer Reference: " . var_export($e, true));
-                    flash("Error assigning Pokemon ownership", "danger");
+                    flash("Error assigning Trainer ownership", "danger");
                     $has_error = true;
                 }
                 if (!$has_error) {
@@ -76,8 +76,6 @@ if (count($_POST) > 0) {
                     $intent_type = se($_POST, "intent_type", "unavailable", false);
                     if ($intent_type == "Caught") {
                         $intent_type = "Caught";
-                    } else if ($intent_type == "Seen") {
-                        $intent_type = "Not Caught";
                     } else if ($intent_type == "Not Caught") {
                         $intent_type = "Not Caught";
                     }
