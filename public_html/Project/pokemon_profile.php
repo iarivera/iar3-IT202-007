@@ -172,7 +172,7 @@ if ($pokemon_id != 0) {
                 // Update the modal's content.
                 const modalTitle = actionModal.querySelector('.modal-title')
 
-                modalTitle.textContent = `${action} ${catName}`
+                modalTitle.textContent = `${action} ${pokemonName}`
                 const actionInput = actionModal.querySelector("#action");
                 actionInput.value = action;
             })
