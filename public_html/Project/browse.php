@@ -11,7 +11,7 @@ $pokemon = search_mons();
     <h4>Pokemon</h4>
     <div class="container mx-auto">
         <div>
-            <?php include(__DIR__ . "/../../partials/search_form.php"); ?>
+            <?php include(__DIR__ . "/../../partials/pokemon_search_form.php"); ?>
         </div>
         <?php $results = $pokemon;
         include(__DIR__ . "/../../partials/result_metrics.php"); ?>

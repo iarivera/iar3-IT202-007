@@ -17,6 +17,7 @@ if (count($intents) > 0) {
 }
 
 $table = ["data" => $intents, "header_override" => $headers, "view_url" => "request.php"];
+$table["ignored_columns"] = ["id", "pokemon_id", "requestor_id"];
 
 ?>
 <div class="container-fluid">
