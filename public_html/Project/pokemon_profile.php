@@ -33,7 +33,7 @@ if ($pokemon_id != 0) {
 
     <h1>Current Pokemon</h1>
     <div class="card">
-        <div class="card-header text-center">
+        <div class="card-header text-left">
             <?php se($mons, "caught"); ?>
         </div>
         <div class="card-body">
@@ -108,8 +108,7 @@ if ($pokemon_id != 0) {
                         </p>
                     </div>
                     <div class="col">
-                        <div><strong>Name: </strong><?php render_like(["value" => se($mon, "name", 0, false)]); ?></div>
-                        <div><strong>Type: </strong><?php render_like(["value" => se($mon, "type_1", 0, false)]); ?></div>
+                        <div><strong>Type: </strong><?php render_like(["value" => se($mons, "type_1", 0, false)]); ?></div>
                     </div>
                 </div>
             </div>

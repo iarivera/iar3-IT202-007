@@ -50,12 +50,12 @@ function create_intent($mon_id, $requestor_id, $processor_id, $type_reference, $
     SELECT 
     a.type_id, 
     a.intent_type, 
-    b.pokemon_status, 
+    b.pokemon_caught, 
     c.intent_status
 FROM
     (SELECT cit.id as type_id, cit.label as intent_type FROM CA_Intent_Types cit WHERE cit.id = :tid OR cit.label = :tid) a
 LEFT JOIN
-    (SELECT c.status as cat_status FROM CA_Pokemon c WHERE c.id = :cat_id) b ON 1=1
+    (SELECT c.caught as pokemon_caught FROM CA_Pokemon c WHERE c.id = :pokemon_id) b ON 1=1
 LEFT JOIN
     (SELECT cis.label as intent_status FROM CA_Intent_Status cis JOIN CA_Intents ci ON ci.status = cis.id WHERE pokemon_id = :pokemon_id ORDER BY cis.modified LIMIT 1) c ON 1";
     $stmt = $db->prepare($query);
@@ -76,25 +76,25 @@ LEFT JOIN
     $intent_type_id = (int)se($action_status, "type_id", -1, false);
     $intent_status = strtolower(se($action_status, "intent_status", "", false));
     $intent_type = strtolower(se($action_status, "intent_type", "", false));
-    $mon_status = strtolower(se($action_status, "pokemon_status", "", false));
-    $catch_rules = ["caught", "not caught"];
-    $seen_rules = ["seen"];
+    $mon_status = strtolower(se($action_status, "pokemon_caught", "", false));
+    $catch_rules = ["Caught", "Not Caught"];
+    $seen_rules = ["Not Caught"];
     $intent_rules = ["", "approved", "rejected"];
     if (!in_array($intent_status, $intent_rules)) {
         flash("There is already another action in process for this cat, please check back later", "warning");
         error_log("Intent rule triggered, intent status: $intent_status");
         return null;
     }
-    if ($intent_type == "adopt") {
+    if ($intent_type == "Catch") {
         if (!in_array($mon_status, $catch_rules)) {
-            flash("Sorry you can't adopt this cat at this time", "warning");
-            error_log("Adoption rule triggered, invalid cat status: $mon_status");
+            flash("Sorry you can't catch this Pokemon at this time", "warning");
+            error_log("Seen rule triggered, invalid Pokemon status: $mon_status");
             return null;
         }
-    } else if ($intent_type == "foster") {
+    } else if ($intent_type == "Not Caught") {
         if (!in_array($mon_status, $seen_rules)) {
-            flash("Sorry you can't foster this cat at this time", "warning");
-            error_log("Foster rules triggered, invalid cat status: $mon_status");
+            flash("Sorry you can't catch this Pokemon at this time", "warning");
+            error_log("Foster rules triggered, invalid Pokemon status: $mon_status");
             return null;
         }
     }
@@ -123,7 +123,7 @@ LEFT JOIN
             $db->commit(); //confirm all the transaction steps
             return $intent_id;
         } catch (PDOException $e) {
-            error_log("Error updating cat status: " . var_export($e, true));
+            error_log("Error updating Pokemon status: " . var_export($e, true));
             $db->rollBack(); //rollback any changes
         }
     }
