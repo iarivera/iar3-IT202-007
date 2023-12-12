@@ -82,7 +82,7 @@ if (count($_POST) > 0) {
                     $query = "UPDATE CA_Pokemon set previous_status = status, status = :status WHERE id = :cid";
                     $stmt = $db->prepare($query);
                     try {
-                        $stmt->execute([":cid" => $cat_id, ":status" => $intent_type]);
+                        $stmt->execute([":cid" => $pokemon_id, ":status" => $intent_type]);
                         $db->commit(); //commit
                         flash("Approved request", "success");
                     } catch (PDOException $e) {
