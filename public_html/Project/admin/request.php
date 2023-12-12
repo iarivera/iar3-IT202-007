@@ -45,7 +45,7 @@ if (count($_POST) > 0) {
         $pokemon_id = (int)se($_POST, "pokemon_id", -1, false);
         $has_error = false;
         if ($pokemon_id < 1) {
-            error_log("Invalid pokemon id");
+            error_log("Invalid Pokemon id");
             flash("Invalid Pokemon id", "danger");
             $has_error = true;
         }
@@ -67,19 +67,19 @@ if (count($_POST) > 0) {
                     $stmt->execute([":cid" => $pokemon_id, ":oid" => $owner_id, ":iid" => $id]);
                 } catch (PDOException $e) {
                     $db->rollBack(); //rollback
-                    error_log("Error creating or updating Pokemon Trainer Reference: " . var_export($e, true));
-                    flash("Error assigning Trainer ownership", "danger");
+                    error_log("Error creating or updating Pokemon Reference: " . var_export($e, true));
+                    flash("Error assigning Pokemon ownership", "danger");
                     $has_error = true;
                 }
                 if (!$has_error) {
-                    //update the pokemon
+                    //update the Pokemon
                     $intent_type = se($_POST, "intent_type", "unavailable", false);
                     if ($intent_type == "Catch") {
                         $intent_type = "Caught";
                     } else if ($intent_type == "Not Caught") {
                         $intent_type = "Not Caught";
                     }
-                    $query = "UPDATE CA_Pokemon set previous_status = caught, caught = :status WHERE id = :cid";
+                    $query = "UPDATE CA_Pokemon set previous_status = caught, caught = :caught WHERE id = :cid";
                     $stmt = $db->prepare($query);
                     try {
                         $stmt->execute([":cid" => $pokemon_id, ":status" => $intent_type]);
@@ -96,8 +96,8 @@ if (count($_POST) > 0) {
             }
         } else if ($is_rejected) {
             if (!$has_error) {
-                //update the pokemon
-                $query = "UPDATE CA_Pokemon set status = previous_status, previous_status = status WHERE id = :cid";
+                //update the cat
+                $query = "UPDATE CA_Pokemon set caught = previous_status, previous_status = caught WHERE id = :cid";
                 $stmt = $db->prepare($query);
                 try {
                     $stmt->execute([":cid" => $pokemon_id]);
