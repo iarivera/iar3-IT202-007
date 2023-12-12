@@ -74,12 +74,12 @@ if (count($_POST) > 0) {
                 if (!$has_error) {
                     //update the pokemon
                     $intent_type = se($_POST, "intent_type", "unavailable", false);
-                    if ($intent_type == "Caught") {
+                    if ($intent_type == "Catch") {
                         $intent_type = "Caught";
                     } else if ($intent_type == "Not Caught") {
                         $intent_type = "Not Caught";
                     }
-                    $query = "UPDATE CA_Pokemon set previous_status = status, status = :status WHERE id = :cid";
+                    $query = "UPDATE CA_Pokemon set previous_status = caught, caught = :status WHERE id = :cid";
                     $stmt = $db->prepare($query);
                     try {
                         $stmt->execute([":cid" => $pokemon_id, ":status" => $intent_type]);

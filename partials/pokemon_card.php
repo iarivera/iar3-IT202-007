@@ -1,4 +1,4 @@
-<?php if (isset($data)) : error_log("Pokemon data: " . var_export($data, true)); ?>
+<?php if (isset($data)) : /*error_log("Pokemon data: " . var_export($data, true));*/ ?>
     <div class="card" style="width:15em">
             <?php if (se($data, "username", "", false)) : ?> by
                 <a href="<?php get_url("profile.php?id=", true);
