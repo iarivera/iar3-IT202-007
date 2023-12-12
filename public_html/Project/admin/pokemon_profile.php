@@ -65,6 +65,7 @@ unset($data["id"]);
 $back = "admin/list_pokemon.php?" . http_build_query($data);
 ?><div class="container-fluid>">
     <h1>Pokemon Profile</h1>
+    <a class="btn btn-secondary" href="<?php get_url($back, true); ?>">Back</a>
     <form method="POST">
         <?php render_input(["type" => "text", "id" => "name", "name" => "name", "label" => "Name", "rules" => ["minlength" => 2, "required" => true], "value" => se($mons, "name", "", false)]) ?>
         <?php render_input(["type" => "select", "id" => "type_1", "name" => "type_1", "label" => "Type", "rules" => ["required" => true], "options" => array_combine($pokemonTypes, $pokemonTypes), "value" => se($mons, "type_1", "Unknown", false)]); ?>
@@ -79,5 +80,5 @@ $back = "admin/list_pokemon.php?" . http_build_query($data);
 </style>
 <?php
 //note we need to go up 1 more directory
-require_once(__DIR__ . "/../../../partials/flash.php");
+require_once(__DIR__ . "/../../../partials/footer.php");
 ?>

@@ -31,27 +31,74 @@ session_start();
 <!-- include css and js files -->
 <link rel="stylesheet" href="<?php echo get_url('styles.css'); ?>">
 <script src="<?php echo get_url('helpers.js'); ?>"></script>
-<nav>
-    <ul>
+<nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="<?php echo get_url('home.php'); ?>">Community Pokedex</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent" aria-controls="navContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <ul>
         <?php if (is_logged_in()) : ?>
-            <li><a href="<?php echo get_url('home.php'); ?>">Home</a></li>
-            <li><a href="<?php echo get_url('profile.php'); ?>">Profile</a></li>
-            <li><a href="<?php echo get_url('pokemon_profile.php'); ?>">Pokemon Profiles</a></li>
+            <li><a href="<?php echo get_url('home.php'); ?>">Home</a></li>    
         <?php endif; ?>
         <?php if (!is_logged_in()) : ?>
             <li><a href="<?php echo get_url('login.php'); ?>">Login</a></li>
             <li><a href="<?php echo get_url('register.php'); ?>">Register</a></li>
         <?php endif; ?>
-        <?php if (has_role("Admin")) : ?>
-            <li><a href="<?php echo get_url('admin/create_role.php'); ?>">Create Role</a></li>
-            <li><a href="<?php echo get_url('admin/list_roles.php'); ?>">List Roles</a></li>
-            <li><a href="<?php echo get_url('admin/assign_roles.php'); ?>">Assign Roles</a></li>
-            <li><a href="<?php echo get_url('admin/manage_pokemon_data.php'); ?>">Manage Pokemon</a></li>
-            <li><a href="<?php echo get_url('admin/list_pokemon.php'); ?>">List Pokemon</a></li>
-            <li><a href="<?php echo get_url('admin/pokemon_profile.php'); ?>">Pokemon Profiles</a></li>
-        <?php endif; ?>
         <?php if (is_logged_in()) : ?>
             <li><a href="<?php echo get_url('logout.php'); ?>">Logout</a></li>
         <?php endif; ?>
     </ul>
+</nav><div class="collapse navbar-collapse" id="navContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="myDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Pokemon Info
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="myDropdown">
+                            <li class="nav-item"><a class="nav-link" href="<?php echo get_url('browse.php'); ?>">Browse Pokemon</a></li>
+                            <li class="nav-item"><a class="nav-link" href="<?php echo get_url('not_caught_pokemon.php'); ?>">Uncaught Pokemon</a></li>
+                            <li class="nav-item"><a class="nav-link" href="<?php echo get_url('recently_caught.php'); ?>">Recently Caught</a></li>
+                        </ul>
+                <?php if (is_logged_in()) : ?>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="myDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            My Info
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="myDropdown">
+                            <li><a class="dropdown-item" href="<?php echo get_url('profile.php'); ?>">Profile</a></li>
+                            <li><a class="dropdown-item" href="<?php echo get_url('my_requests.php'); ?>">My Requests</a></li>
+                            <li><a class="dropdown-item" href="<?php echo get_url('caught_pokemon.php'); ?>">My Caught Pokemon</a></li>
+                        </ul>
+                    </li>
+                <?php endif; ?>
+                <?php if (!is_logged_in()) : ?>
+                    <li class="nav-item"><a class="nav-link" href="<?php echo get_url('login.php'); ?>">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?php echo get_url('register.php'); ?>">Register</a></li>
+                <?php endif; ?>
+                <?php if (has_role("Admin")) : ?>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="rolesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Roles
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="rolesDropdown">
+                            <li><a class="dropdown-item" href="<?php echo get_url('admin/create_role.php'); ?>">Create Roles</a></li>
+                            <li><a class="dropdown-item" href="<?php echo get_url('admin/list_roles.php'); ?>">List Roles</a></li>
+                            <li><a class="dropdown-item" href="<?php echo get_url('admin/assign_roles.php'); ?>">Assign Roles</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="mDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Pokedex Management
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="mDropdown">
+                            <li><a class="dropdown-item" href="<?php echo get_url('admin/manage_pokemon_data.php'); ?>">Manage Pokemon</a></li>
+                            <li><a class="dropdown-item" href="<?php echo get_url('admin/list_pokemon.php'); ?>">List Pokemon</a></li>
+                            <li><a class="dropdown-item" href="<?php echo get_url('admin/requests.php'); ?>">Requests</a></li>
+                        </ul>
+                    </li>
+                <?php endif; ?>
+            </ul>
+        </div>
+    </div>
 </nav>

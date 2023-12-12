@@ -14,12 +14,17 @@ $table = ["data" => $mons, "delete_url" => "disable_pokemon_profile.php", "view_
 <div class="container-fluid">
     <h1>List Pokemon</h1>
     <div>
-        <?php include(__DIR__ . "/../../../partials/search_form.php"); ?>
+        <?php include(__DIR__ . "/../../../partials/pokemon_search_form.php"); ?>
     </div>
+    <?php $results = $mons;
+    include(__DIR__ . "/../../../partials/result_metrics.php"); ?>
+    <div>
     <div>
         <?php render_table($table); ?>
     </div>
-    /*Include pagination file here */
+    <div class="row">
+        <?php include(__DIR__ . "/../../../partials/pagination_nav.php"); ?>
+    </div>
 </div>
 
 <?php
