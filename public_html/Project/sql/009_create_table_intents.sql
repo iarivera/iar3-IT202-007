@@ -13,5 +13,5 @@ CREATE TABLE CA_Intents(
     FOREIGN KEY (`requestor_id`) REFERENCES Users(`id`),
     FOREIGN KEY (`processor_id`) REFERENCES Users(`id`),
     FOREIGN KEY (`type`) REFERENCES CA_Intent_Types(`id`),
-    FOREIGN KEY (`status`) REFERENCES CA_Intent_Types(`id`)
+    FOREIGN KEY (`status`) REFERENCES CA_Intent_Status(`id`)
 )
