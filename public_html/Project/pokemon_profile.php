@@ -121,6 +121,7 @@ if ($pokemon_id != 0) {
         <div class="card-footer">
             <div class="row">
                 <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#actionModal" data-bs-action="Catch">Mark as Caught</button>
+                <a class="btn btn-secondary" href="browse.php?">Back</a>
             </div>
         </div>
     </div>
