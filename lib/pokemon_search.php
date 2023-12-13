@@ -132,7 +132,7 @@ function _build_search_query(&$params, $search)
         co.owner_id as owner_id,
         u.username as username,
         c.modified as last_updated
-        FROM CA_Pokemon c
+        FROM CA_Pokemon as c
         LEFT JOIN CA_Pokemon_Trainer co on co.pokemon_id = c.id
         LEFT JOIN Users u on co.owner_id = u.id
         WHERE 1=1";
@@ -143,8 +143,10 @@ function _build_search_query(&$params, $search)
 
     global $total;
     $total = (int)get_potential_total_records($total_query . $filter_query, $params);
+    global $total_records;
+    $total_records = (int)get_potential_total_records($total_query, []);
     $limit = (int)se($search, "limit", 10, false);
-    error_log("total record: $total");
+    error_log("total records: $total");
     $page = (int)se($search, "page", "1", false);
     if ($limit > 0 && $limit <= 100 && $page > 0) {
         $offset = ($page - 1) * $limit;

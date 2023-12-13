@@ -151,16 +151,10 @@ if (count($request) == 1) {
             <div class="card-footer">
                 <div class="row justify-content-center">
                     <div class="col-auto">
-                        <?php 
-                        if ($request["intent_status"] == "pending")
-                        {render_button(["type" => "submit", "extras" => ["name" => "action"], "text" => "Approve", "color" => "success"]);}
-                        ?>
+                        <?php render_button(["type" => "submit", "extras" => ["name" => "action"], "text" => "Approve", "color" => "success"]); ?>
                     </div>
                     <div class="col-auto">
-                    <?php 
-                        if ($request["intent_status"] == "pending")
-                        {render_button(["type" => "submit", "extras" => ["name" => "action"], "text" => "Reject", "color" => "danger"]);}
-                    ?>
+                        <?php render_button(["type" => "submit", "extras" => ["name" => "action"], "text" => "Reject", "color" => "danger"]); ?>
                     </div>
                         <a class="btn btn-secondary" href="requests.php">Back</a>
                     <div class="col-auto">

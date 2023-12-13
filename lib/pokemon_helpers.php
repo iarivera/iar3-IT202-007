@@ -1,5 +1,5 @@
 <?php
-$VALID_ORDER_COLUMNS = ["created", "modified"];
+$VALID_ORDER_COLUMNS = ["name", "type_1", "caught", "created", "modified"];
 
 function get_pokemon() {
     $db = getDB();
