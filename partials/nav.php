@@ -39,14 +39,14 @@ session_start();
         </button>
         <ul>
         <?php if (is_logged_in()) : ?>
-            <li><a href="<?php echo get_url('home.php'); ?>">Home</a></li>    
+            <li><a class="btn btn-secondary" href="<?php echo get_url('home.php'); ?>">Home</a></li>    
         <?php endif; ?>
         <?php if (!is_logged_in()) : ?>
-            <li><a href="<?php echo get_url('login.php'); ?>">Login</a></li>
-            <li><a href="<?php echo get_url('register.php'); ?>">Register</a></li>
+            <li><a class="btn btn-secondary" href="<?php echo get_url('login.php'); ?>">Login</a></li>
+            <li><a class="btn btn-secondary" href="<?php echo get_url('register.php'); ?>">Register</a></li>
         <?php endif; ?>
         <?php if (is_logged_in()) : ?>
-            <li><a href="<?php echo get_url('logout.php'); ?>">Logout</a></li>
+            <li><a class="btn btn-secondary" href="<?php echo get_url('logout.php'); ?>">Logout</a></li>
         <?php endif; ?>
     </ul>
 </nav><div class="collapse navbar-collapse" id="navContent">

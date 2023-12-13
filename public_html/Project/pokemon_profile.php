@@ -40,7 +40,7 @@ if ($pokemon_id != 0) {
                 se($mons, "caught");
             }
             else {
-                echo $mons["caught"] . "by";
+                echo $mons["caught"];
             }
             ?>
         </div>
@@ -114,9 +114,6 @@ if ($pokemon_id != 0) {
                             ?>
                             region.
                         </p>
-                    </div>
-                    <div class="col">
-                        <div><strong>Type: </strong><?php render_like(["value" => se($mons, "type_1", 0, false)]); ?></div>
                     </div>
                 </div>
             </div>
