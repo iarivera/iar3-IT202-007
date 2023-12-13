@@ -1,0 +1,1 @@
+ALTER TABLE CA_Pokemon ADD COLUMN previous_status VARCHAR(20);
