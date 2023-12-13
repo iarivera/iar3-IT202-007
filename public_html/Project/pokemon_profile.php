@@ -119,6 +119,8 @@ if ($pokemon_id != 0) {
             </div>
         </div>
         <div class="card-footer">
+            <?php /*iar3 12/13/2023 this code handles the catch request. The button is clicked, and a post request is made, and the modal
+            action is triggered.*/ ?>
             <div class="row">
                 <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#actionModal" data-bs-action="Catch">Mark as Caught</button>
                 <a class="btn btn-secondary" href="browse.php?">Back</a>
@@ -134,15 +136,12 @@ if ($pokemon_id != 0) {
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-
                         <div class="mb-3">
                             <?php
                             render_input(["type" => "textarea", "name" => "details", "label" => "Request Details", "rules" => ["required" => true]]);
                             ?>
                             <?php render_input(["type" => "hidden", "id" => "action", "name" => "action", "value" => ""]); ?>
                         </div>
-
-
                     </div>
                     <div class="modal-footer">
                         <?php
@@ -156,6 +155,8 @@ if ($pokemon_id != 0) {
     </div>
 
     <script>
+        <?php /*iar3 12/13/2023 The javascript handles event listening, in regards to actionModal. It then gets the
+        Pokemon's name and the intended action, and then sends the catch request to the admin, once the form is submitted.*/?>
         const actionModal = document.getElementById('actionModal')
         if (actionModal) {
             actionModal.addEventListener('show.bs.modal', event => {
