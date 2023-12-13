@@ -77,11 +77,10 @@ LEFT JOIN
     $intent_status = strtolower(se($action_status, "intent_status", "", false));
     $intent_type = strtolower(se($action_status, "intent_type", "", false));
     $mon_status = strtolower(se($action_status, "pokemon_caught", "", false));
-    $catch_rules = ["Caught", "Not Caught"];
-    $seen_rules = ["Not Caught"];
+    $catch_rules = ["Catch"];
     $intent_rules = ["", "approved", "rejected"];
     if (!in_array($intent_status, $intent_rules)) {
-        flash("There is already another action in process for this cat, please check back later", "warning");
+        flash("There is already another action in process for this Pokemon, please check back later", "warning");
         error_log("Intent rule triggered, intent status: $intent_status");
         return null;
     }
@@ -91,13 +90,7 @@ LEFT JOIN
             error_log("Seen rule triggered, invalid Pokemon status: $mon_status");
             return null;
         }
-    } else if ($intent_type == "Not Caught") {
-        if (!in_array($mon_status, $seen_rules)) {
-            flash("Sorry you can't catch this Pokemon at this time", "warning");
-            error_log("Foster rules triggered, invalid Pokemon status: $mon_status");
-            return null;
-        }
-    }
+    } 
     $query = "INSERT INTO CA_Intents (pokemon_id, requestor_id, processor_id, type, status, requestor_notes, processor_notes)
     VALUES (:pokemon_id, :requestor_id, :processor_id, :type, (SELECT id FROM CA_Intent_Status WHERE label = 'pending' LIMIT 1), :rn, :pn)";
     $stmt = $db->prepare($query);

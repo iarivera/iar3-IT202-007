@@ -12,9 +12,9 @@ if ($id < 1) {
 }
 if (count($_POST) > 0) {
     $action = strtolower(se($_POST, "action", "", false));
-    $query = "UPDATE CA_Intents set processor_notes = :processor_notes, processor_id=:pid";
+    $query = "UPDATE CA_Intents set processor_notes = :processor_notes, processor_id = :processor_id";
     $params[":processor_notes"] = se($_POST, "processor_notes", "", false);
-    $params[":pid"] = $user_id;
+    $params[":processor_id"] = $user_id;
     $is_approved = false;
     $is_rejected = false;
     if (in_array($action, ["approve", "reject"])) {
@@ -76,13 +76,11 @@ if (count($_POST) > 0) {
                     $intent_type = se($_POST, "intent_type", "unavailable", false);
                     if ($intent_type == "Catch") {
                         $intent_type = "Caught";
-                    } else if ($intent_type == "Not Caught") {
-                        $intent_type = "Not Caught";
                     }
                     $query = "UPDATE CA_Pokemon set previous_status = caught, caught = :caught WHERE id = :cid";
                     $stmt = $db->prepare($query);
                     try {
-                        $stmt->execute([":cid" => $pokemon_id, ":status" => $intent_type]);
+                        $stmt->execute([":cid" => $pokemon_id, ":caught" => $intent_type]);
                         $db->commit(); //commit
                         flash("Approved request", "success");
                     } catch (PDOException $e) {
@@ -157,9 +155,6 @@ if (count($request) == 1) {
                     </div>
                     <div class="col-auto">
                         <?php render_button(["type" => "submit", "extras" => ["name" => "action"], "text" => "Reject", "color" => "danger"]); ?>
-                    </div>
-                    <div class="col-auto">
-                        <?php render_button(["type" => "submit", "extras" => ["name" => "action"], "text" => "Save without Action", "color" => "secondary"]); ?>
                     </div>
                 </div>
             </div>
