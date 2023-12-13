@@ -94,7 +94,7 @@ function _build_where_clause(&$query, &$params, $search)
     }
 
     if (!has_role("Admin")) {
-        $query .= " AND status != 'unavailable'";
+        $query .= " AND caught != 'Not Caught'";
     }
 
     // order by

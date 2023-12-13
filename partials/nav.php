@@ -71,11 +71,7 @@ session_start();
                             <li><a class="dropdown-item" href="<?php echo get_url('caught_pokemon.php'); ?>">My Caught Pokemon</a></li>
                         </ul>
                     </li>
-                <?php endif; ?>
-                <?php if (!is_logged_in()) : ?>
-                    <li class="nav-item"><a class="nav-link" href="<?php echo get_url('login.php'); ?>">Login</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?php echo get_url('register.php'); ?>">Register</a></li>
-                <?php endif; ?>
+                <?php endif; ?>        
                 <?php if (has_role("Admin")) : ?>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="rolesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
