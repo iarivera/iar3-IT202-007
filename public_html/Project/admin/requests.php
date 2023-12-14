@@ -1,4 +1,6 @@
 <?php
+/*iar3 12/13/2013 this code pulls the intents requests from the Intents table
+the admin can view individual requests*/
 require_once(__DIR__ . "/../../../partials/nav.php");
 if (!has_role("Admin")) {
     flash("You don't have permission to view this page", "warning");

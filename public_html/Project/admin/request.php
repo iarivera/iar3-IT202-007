@@ -1,4 +1,8 @@
 <?php
+/*iar3 12/13/2023 The code is the page that handles individual requests. It gets the admin's ID, and begins building a
+query. The query updates the Intents table's processor notes, and the ID is filled with the admin's ID
+changes the intent's status, depending on whether or not it was rejected or accepted, then fills the
+Intent's table with the requestor's ID.*/
 require_once(__DIR__ . "/../../../partials/nav.php");
 if (!has_role("Admin")) {
     flash("You don't have permission to view this page", "warning");
@@ -22,8 +26,6 @@ if (count($_POST) > 0) {
         $params[":status"] = $action == "approve" ? "approved" : "rejected"; // my status is past tense
         $is_approved = ($action == "approve");
         $is_rejected = ($action == "reject");
-    } else {
-        $query .= ", status = (select id FROM CA_Intent_Status WHERE label = 'in progress' LIMIT 1)";
     }
     $query .= " WHERE id = :id";
     $params[":id"] = $id;
@@ -51,14 +53,14 @@ if (count($_POST) > 0) {
         }
         if ($is_approved) {
             $owner_id = (int)se($_POST, "requestor_id", -1, false);
-
             if ($owner_id < 1) {
                 error_log("Invalid owner/requestor id");
                 flash("Invalid owner/requestor id", "danger");
                 $has_error = true;
             }
-
             if (!$has_error) {
+                /* iar3 12/13/2023 If there are no errors, the queries to insert a new column in CA_Pokemon_Trainer are executed, and
+                the Pokemon's status is changed from "Not Caught" to "Caught"*/
                 //insert or update ownership
                 $query = "INSERT INTO CA_Pokemon_Trainer (pokemon_id, owner_id, intent_id) VALUES (:cid, :oid, :iid) ON DUPLICATE KEY UPDATE
             owner_id = :oid, intent_id = :iid";
@@ -94,7 +96,7 @@ if (count($_POST) > 0) {
             }
         } else if ($is_rejected) {
             if (!$has_error) {
-                //update the cat
+                //update the Pokemon
                 $query = "UPDATE CA_Pokemon set caught = previous_status, previous_status = caught WHERE id = :cid";
                 $stmt = $db->prepare($query);
                 try {
@@ -125,6 +127,8 @@ if (count($request) == 1) {
 ?>
 
 <div class="contaner-fluid">
+    <?php /* iar3 12/13/2023 this HTML has the buttons for handling requests. The information is pulled from the CA_Intents table.
+    When the action is sent, the code at the top of the file begins.*/ ?>
     <form method="POST">
         <?php render_input(["type" => "hidden", "name" => "pokemon_id", "value" => se($request, "pokemon_id", -1, false)]); ?>
         <?php render_input(["type" => "hidden", "name" => "requestor_id", "value" => se($request, "requestor_id", -1, false)]); ?>
