@@ -1,4 +1,7 @@
 <?php
+/*iar3 12/13/2023 This code get's the loggined user's id from the Users table 
+The Intent's table is searched for the intents that have the user's id.
+The table is then rendered for the user to see.*/
 require_once(__DIR__ . "/../../partials/nav.php");
 is_logged_in(true); //login guard 
 $user_id = get_user_id();
