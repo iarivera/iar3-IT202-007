@@ -1,4 +1,8 @@
 <?php
+/*This file differs from viewing a user's caught Pokemon 
+because it doesn't get the logged in user's id. This is
+because it is attempting to get pull all the Pokemon that
+aren't caught*/
 require_once(__DIR__ . "/../../partials/nav.php");
 
 $search["status"] = "Not Caught";

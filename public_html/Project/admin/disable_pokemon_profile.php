@@ -1,8 +1,9 @@
 <?php
-// iar3 This file is an early of marking pokemon as caught
-// it uses the library functions, and checks if the id of
-// a Pokemon is valid. If it is, it sets its status as
-// Caught, otherwise an error is returned.
+/* iar3 12/13/2023 Due to lack of time, the functionality remains the same.
+It currently acts as intermediary page that simply marks a Pokemon as caught.
+The plan was to make this a full fledged page, with an option to set which
+user caught the Pokemon, do all the Pokemon association without an intent
+request*/
 require(__DIR__ . "/../../../lib/functions.php");
 // don't forget to start the session if you need it since this is done in nav.php and not functions.php
 if (session_status() != PHP_SESSION_ACTIVE) {
